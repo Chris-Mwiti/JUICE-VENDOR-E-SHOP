@@ -1,0 +1,115 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Mango Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/mango smoothie  1.png",
+      "category": "Mango",
+      "description": "Pure blend of Mango Juice Flavour"
+    },
+    {
+      "id": 2,
+      "title": "Strawberry Juice",
+      "price": "70sh",
+      "image": "../../public/Images/Products/strawberry-smoothie (1).jpg",
+      "category": "Strawberry",
+      "description": "Pure blend of Strawberry Juice Flavour"
+    },
+    {
+      "id": 3,
+      "title": "Banana Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/banana-strawberry (1).jpg",
+      "category": "Banana",
+      "description": "Pure blend of Banana Juice Flavour"
+    },
+    {
+      "id": 4,
+      "title": "Pineapple Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/pineapple smoot 1.png",
+      "category": "Pineapple",
+      "description": "Pure blend of Banana Pineapple Juice Flavour"
+    },
+    {
+      "id": 5,
+      "title": "Apple Juice",
+      "price": "80sh",
+      "image": "../../public/Images/Products/apple smoothies 0.png",
+      "category": "Apple",
+      "description": "Pure blend of Apple Juice Flavour"
+    },
+    {
+      "id": 6,
+      "title": "Mango Avocado Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/mango-avocado-2.jpg",
+      "category": "Mango",
+      "description": "A blend of both Mango and Avocado fruits"
+    },
+    {
+      "id": 7,
+      "title": "Banana Strawberry Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/banana-strawberry (1).jpg",
+      "category": "Banana",
+      "description": "A blend of both Banana and Strawberry fruits"
+    },
+    {
+      "id": 8,
+      "title": "Watermelon Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/watermelon smoo 1.png",
+      "category": "Watermelon",
+      "description": "Pure blend of Watermelon Juice Flavour"
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "title": "Strawberry Juice",
+      "price": "70sh",
+      "image": "../../public/Images/Products/strawberry-smoothie (1).jpg",
+      "category": "Strawberry",
+      "description": "Pure blend of Strawberry Juice Flavour",
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "title": "Banana Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/banana-strawberry (1).jpg",
+      "category": "Banana",
+      "description": "Pure blend of Banana Juice Flavour",
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "title": "Apple Juice",
+      "price": "80sh",
+      "image": "../../public/Images/Products/apple smoothies 0.png",
+      "category": "Apple",
+      "description": "Pure blend of Apple Juice Flavour",
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "title": "Pineapple Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/pineapple smoot 1.png",
+      "category": "Pineapple",
+      "description": "Pure blend of Banana Pineapple Juice Flavour",
+      "quantity": 1
+    },
+    {
+      "id": 1,
+      "title": "Mango Juice",
+      "price": "50sh",
+      "image": "../../public/Images/Products/mango smoothie  1.png",
+      "category": "Mango",
+      "description": "Pure blend of Mango Juice Flavour",
+      "quantity": 1
+    }
+  ]
+}
