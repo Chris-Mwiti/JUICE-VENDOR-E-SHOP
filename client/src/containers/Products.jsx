@@ -109,7 +109,7 @@ const Product = ({dispatchCart}) => {
                                 <Typography variant="h4">{state.productItem.title}</Typography>
                                 <hr></hr>
                                 <Box display='flex' alignItems='center' justifyContent='space-between' flexDirection={{xs: 'column', md: 'row'}}>
-                                    <Typography variant="h4" color='primary'>{`${state.productItem.price.slice(0,2) * quantity} sh`}</Typography>
+                                    <Typography variant="h4" color='primary'>{`${state.productItem.price * quantity} sh`}</Typography>
                                     <TextField type="number" value={quantity} onChange={(e) => handleQuantityChange(e)}/>
                                 </Box>
                                 <hr></hr>
@@ -134,7 +134,7 @@ const Product = ({dispatchCart}) => {
                                 </Box>
                                 <Stack direction={'column'} spacing={2}>
                                     <Typography variant="h6">{item.title}</Typography>
-                                    <Typography variant="h5" color={'primary'}>{item.price}</Typography>
+                                    <Typography variant="h5" color={'primary'}>{`${item.price} sh`}</Typography>
                                 </Stack>
                             </Box>
                         </Link>

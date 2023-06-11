@@ -21,13 +21,15 @@ import ProductController from './controllers/productController.js'
 // Global Variables
 import ACTION_TYPES from './global/globalActionTypes.js'
 import Product from './containers/Products.jsx'
+import CartController from './controllers/cartController.js'
 
 function App(){
   const initialStates = {
     loading: true,
     data: null,
     error: null,
-    cart: []
+    cart: [],
+    cartItems: null
   }
 
   function reducer(state,action){
@@ -49,6 +51,18 @@ function App(){
         cart: [action.cartItem,...state.cart]
       }
 
+      case ACTION_TYPES.FETCH_CART_ITEMS.FETCH_SUCCESS: return{
+        ...state,
+        loading: false,
+        cartItems: action.cartItems
+      }
+
+      case ACTION_TYPES.FETCH_CART_ITEMS.FETCH_ERROR: return {
+        ...state,
+        loading: false,
+        error: action.fetch_error
+      }
+
       
       default:
         state
@@ -67,9 +81,22 @@ function App(){
           dispatch({type: ACTION_TYPES.FETCH_ERROR, error: error.message})
         }
       }
+
+      async function fetchCartItems(dispatch){
+        try{
+          const cartController = new CartController();
+          const cartItems = await cartController.getItems();
+          dispatch({type: ACTION_TYPES.FETCH_CART_ITEMS.FETCH_SUCCESS, cartItems: cartItems})
+        }
+        catch(error){
+          dispatch({type: ACTION_TYPES.FETCH_CART_ITEMS.FETCH_ERROR, fetch_error: error.message})
+        }
+      }
       if(state.data == null){
         fetchProducts(dispatch)
       }
+
+      fetchCartItems(dispatch)
     },[])
   return (
     <ThemeProvider theme={theme}>
@@ -77,7 +104,7 @@ function App(){
         <Routes>
           <Route path='/' element={<MainLayout cartItems={state.cart.length} />}>
             <Route index element={<Home products={state.data}/>} />
-            <Route path='cart' element={<Cart/>} />
+            <Route path='cart' element={<Cart cartItems={state.cartItems}/>} />
             <Route path='/product/:id/:category' element={<Product dispatchCart={dispatch}/>}></Route>
           </Route>
         </Routes>

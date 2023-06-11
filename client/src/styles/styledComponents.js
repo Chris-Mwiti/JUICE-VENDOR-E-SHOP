@@ -1,4 +1,4 @@
-import { AppBar, Box, Drawer, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Box, Drawer, IconButton, TableCell, TableRow, Toolbar, tableCellClasses } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledAppBar = styled(AppBar)({
@@ -39,4 +39,25 @@ const StyledIconButton = styled(IconButton)({
   backgroundColor: '#e3e3e3'
 })
 
-export {StyledAppBar,StyledDrawer, StyledToolbar,Container,StyledIconButton}
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+
+export {StyledAppBar,StyledDrawer, StyledToolbar,Container,StyledIconButton, StyledTableCell,StyledTableRow}

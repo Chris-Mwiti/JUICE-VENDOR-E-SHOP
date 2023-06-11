@@ -26,7 +26,7 @@ const ProductsGrid = ({products}) => {
                    </Link>
                     <div className="product-details">
                         <span className="product-name">{product.title}</span>
-                        <span className="price-tag">Price: <span className="price">{product.price}</span></span>
+                        <span className="price-tag">Price: <span className="price">{`${product.price} sh`}</span></span>
                         <div className="product-action-btn">
                             <IconButton><Favorite/></IconButton>
                             <Button variant="outlined">ADD TO CART</Button>
