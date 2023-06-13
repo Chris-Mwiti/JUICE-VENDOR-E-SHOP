@@ -4,11 +4,11 @@ import { useState } from "react";
 
 const CartItems = ({cartItems,handleQuantityChange}) => {
     return ( 
-        <Box display={'flex'} flexDirection={'column'} width={{xs: '100%', md:'70%'}} maxHeight={'45%'} gap={2}>
+        <Box display={'flex'} flexDirection={'column'} width={{xs: '100%', md:'70%'}} maxHeight={'100%'} gap={2} paddingY={2}>
             <Typography variant="h5">Shopping Cart</Typography>
             <hr></hr>
             <Stack direction={'column'} spacing={1} width={'100%'}>
-             <TableContainer component={'paper'} sx={{height:{md: 700}, width: '100%'}}>
+             <TableContainer component={'paper'} sx={{maxHeight:{md: 700}, width: '100%'}}>
                 <Table sx={{width: '100%'}} stickyHeader>
                     <TableHead>
                         <TableRow>

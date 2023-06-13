@@ -78,7 +78,7 @@ const Product = ({dispatchCart}) => {
        await dispatchCart({type: ACTION_TYPES.ADD_TO_CART, cartItem: productItem})
 
         // Adds Quantity property to the productItem
-       const newProductItem = {...productItem, quantity: quantity}
+       const newProductItem = await {...productItem, quantity: quantity, total: quantity * productItem.price}
        const cartController = new CartController(newProductItem)
 
         // Post Status

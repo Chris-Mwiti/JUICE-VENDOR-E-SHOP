@@ -1,13 +1,12 @@
-import { Box, Breadcrumbs, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Stack, Typography } from "@mui/material";
 import { Container } from "../styles/styledComponents";
 import { Link } from "react-router-dom";
 import { NavigateNext } from "@mui/icons-material";
 import CartItems from "../components/CartItems";
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 import ACTION_TYPES from "../global/globalActionTypes";
-import { useEffect } from "react";
-import CartController from "../controllers/cartController";
 import useCart from "../Hooks/useCart";
+import CartSummary from "../components/CartSummary";
 
 const Cart = () => {
     const initState={
@@ -40,12 +39,14 @@ const Cart = () => {
     }
     const [state,dispatch] = useReducer(reducer,initState)
     const handleQuantityChange = (e,item) => {
+       const {value} = e.target
        const cartItems = [...state.cartItems];
        const newCartItems = cartItems.map((cartItem) => {
             if(item.id == cartItem.id){
                 return {
                     ...cartItem,
-                    quantity: e.target.value
+                    quantity: value,
+                    total: value * cartItem.price
                 }
             }
             else{
@@ -58,9 +59,9 @@ const Cart = () => {
     }
     // Mount hook
     useCart(dispatch)
-    
+
     return (  
-        <Container>
+        <Container minHeight={'100%'}>
             <Box width='100%' height='400px' position={'relative'}>
                 <img src='/Images/Shop/shop-breadcrumb-background.jpg' alt="hero-background" width='100%' height='100%' style={{objectFit: 'cover'}} />
                 <Box width="100%" sx={{position: "absolute", zIndex: 5, top: "50%", left: "50%", transform: 'translate(-50%, -50%)'}} display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'} gap={2}>
@@ -72,7 +73,15 @@ const Cart = () => {
                 </Box>
             </Box>
             <Box display={'flex'} padding={2} width={'100%'}>
-                <CartItems cartItems={state.cartItems} handleQuantityChange={handleQuantityChange} />
+                { state.cartItems && state.cartItems ? (
+                <Stack display={'flex'} direction={{xs: 'column', md: 'row'}} justifyContent={'space-between'} width={'100%'} gap={{xs: 2, md: 0}}>
+                    <CartItems cartItems={state.cartItems} handleQuantityChange={handleQuantityChange} />
+                    <CartSummary cartItems={state.cartItems} />
+                </Stack>
+                ):(
+                <Box width={'100%'} height={'100%'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                    <Typography variant='h4' textAlign={'center'}>Ooops!!, You have no items in your cart</Typography>
+                </Box>)}
             </Box>
 
         </Container>
