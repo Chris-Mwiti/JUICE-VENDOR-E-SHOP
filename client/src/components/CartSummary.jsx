@@ -1,11 +1,27 @@
+// MUI COMPONENTS
 import { Box, Button, CircularProgress, FormControl, FormHelperText, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
+
+// React imports
 import { useState,useReducer } from "react";
+
+// Reducers
 import { cartSummaryReducer } from "../reducers/cartReducers";
+
+// Controllers
 import DiscountController from "../controllers/discountController";
 
 const CartSummary = ({cartItems}) => {
+    // Checks tho no of items in the cart
     const noOfCartItems = cartItems && cartItems.length
+    // States to manage the code status of each code
+    const [codeStatus, setCodeStatus] = useState({
+        loading: false,
+        message: "",
+        error: false
+    })
+    // Calculates the total price of the products in the cart
     const totalPrice = cartItems && cartItems.reduce((total,currValue) => total + currValue.total,0)
+    // Initialize the state of the reducers
     const initState = {
         finalTotal: totalPrice,
         deliveryMethod: {price: 0, type:"free", helperText: "Delivery is within 2-5 hours"},
@@ -14,37 +30,34 @@ const CartSummary = ({cartItems}) => {
         fetchPromoStatus: {
             loading: true,
             error:{status: false, message: ""},
-            codes: []
-        },
-        codeStatus: {
-            loading: false,
-            error:{status: false, message: ""}
+            codes: null
         }
     }
     const [state,dispatch] = useReducer(cartSummaryReducer, initState)
+
+    // Fetch the promos from the database
     async function fetchPromo(){
         const discountController = new DiscountController()
         try{
           const codes = await discountController.getDiscountCodes()
-          console.log(codes)
           dispatch({type: "fetchPromoSuccess", codes: codes})
-          console.log(state.fetchPromoStatus.codes)
+          return codes
         }
         catch(error){
           dispatch({type: "fetchPromoError", error: error.message})  
         }
     }
+
+    // Check if the promo codes exisit
     const checkPromoCode = async () => {
-        // dispatch({type: 'loading'})
-        await fetchPromo()
-        state.fetchPromoStatus.codes.map((item) => {
-            if(item.code !== state.promoValue){
-                dispatch({type: "promoError", errorMessage: "Promo code not found"})
-            }
-            else{
-                console.log("success")
-                dispatch({type: "promoSuccess", successMessage: "Promo code found"})
-            }
+        // Sets the loading status to true
+        setCodeStatus((prevState) => ({...prevState, loading: true}))
+
+        fetchPromo().then((codes) => {
+            const isCodeAvailable = codes.findIndex((item) => item.code == state.promoValue)
+            if(isCodeAvailable != -1) return setCodeStatus((prevState) => ({...prevState, loading: false, message: "Promo code found", error: false}))
+
+            setCodeStatus((prevState) => ({...prevState, loading: false, message: "Promo code not found", error: true}))
 
             
         })
@@ -81,11 +94,11 @@ const CartSummary = ({cartItems}) => {
                     label="Enter promo code"
                     value={state.promoValue}
                     onChange={(e) => dispatch({type: "handlePromoChange", promoValue: e.target.value})}
-                    error={state.codeStatus.error.status}
-                    helperText={state.codeStatus.message}
+                    error = {codeStatus.error}
+                    helperText={codeStatus.message}
                 >
                 </TextField>
-                <Button variant="contained" sx={{width: '200px'}} onClick={checkPromoCode} disabled={state.codeStatus.loading}>{state.codeStatus.loading ? (<CircularProgress color="secondary" />) : (<Typography color={'#fff'}>APPLY</Typography>)
+                <Button variant="contained" sx={{width: '200px'}} onClick={checkPromoCode} disabled={codeStatus.loading}>{codeStatus.loading ? (<CircularProgress color="secondary" />) : (<Typography color={'#fff'}>APPLY</Typography>)
                 }</Button>
             </Stack>
             <hr></hr>

@@ -34,37 +34,6 @@ export function cartSummaryReducer(state,action){
             }
         }
 
-        case "promoSuccess": return{
-            ...state,
-            codeStatus:{
-                ...state.codeStatus,
-                loading: false,
-                message: action.successMessage,
-                error: {
-                    ...state.codeStatus.error,
-                    status: false
-                }
-            }
-        }
-
-        case "promoError": return{
-            ...state,
-            codeStatus: {
-                ...state.codeStatus,
-                loading: false,
-                error: {
-                    status: true,
-                    message: action.errorMessage
-                }
-            }
-        }
-        case "loading": return{
-            ...state,
-            codeStatus: {
-                ...state.codeStatus,
-                loading: true
-            }
-        }
     }
 }
 
