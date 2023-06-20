@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management Database structure
+model User {
+  id Int @id @default(autoincrement())
+  firstName String @db.VarChar(255)
+  lastName String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
+  password String @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  session ShoppingSession?
+  order OrderDetails?
+  refreshToken RefreshTokens?
+}
+model RefreshTokens{
+  id Int @id @default(autoincrement())
+  refreshToken String
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+}
+
+// Product Management 
+model Product {
+  id Int @id @default(autoincrement())
+  productName String @db.VarChar(255)
+  productDescription String @db.VarChar(255)
+  price Int 
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  inventory Inventory @relation(fields: [inventoryId], references: [id])
+  inventoryId Int @unique
+  discount Discount @relation(fields: [discountId], references: [id])
+  discountId Int
+  asset ProductAsset @relation(fields: [assetId], references: [id])
+  assetId Int @unique
+  cartItem CartItems? 
+  orderItem OrderItems?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model ProductAsset {
+  id Int @id @default(autoincrement())
+  image String @db.VarChar(255)
+  products  Product?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Category{
+  id Int @id @default(autoincrement())
+  categoryName String @db.VarChar(255)
+  categoryDescription String @db.VarChar(255)
+  product Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Inventory{
+  id Int @id @default(autoincrement())
+  quantity Int
+  product Product?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+}
+model Discount{
+  id Int @id @default(autoincrement())
+  coupon String?
+  percentage Int
+  status Boolean @default(true)
+  product Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Shopping Cart Management
+model ShoppingSession{
+  id Int @id @default(autoincrement())
+  total Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  cartItems CartItems[]
+}
+model CartItems{
+  id Int @id @default(autoincrement())
+  product Product @relation(fields: [productId], references: [id])
+  productId Int @unique
+  quantity Int 
+  session ShoppingSession @relation(fields: [sessionId], references: [id])
+  sessionId Int
+}
+
+// Order Structure
+model OrderDetails{
+  id Int @id @default(autoincrement())
+  total Int 
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  payment PaymentDetails @relation(fields: [paymentId], references: [id])
+  paymentId Int @unique
+  items OrderItems[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model OrderItems{
+  id Int @id @default(autoincrement())
+  order OrderDetails @relation(fields: [orderId], references: [id])
+  orderId Int
+  product Product @relation(fields: [productId], references: [id])
+  productId Int @unique
+  quantity Int
+}
+model PaymentDetails{
+  id Int  @id @default(autoincrement())
+  orderPayment OrderDetails?
+  amount Int 
+  provider String
+  status String @default("inactive")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

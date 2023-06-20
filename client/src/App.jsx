@@ -13,15 +13,20 @@ import './App.css'
 import Home from './containers/Home.jsx'
 import MainLayout from './Layout/Main.jsx'
 import Cart from './containers/Cart.jsx'
+import SignUpForm from './containers/Sign-up.jsx'
+import Product from './containers/Products.jsx'
 
 // Router-Dom Components
 import { Routes, Route } from 'react-router-dom'
-import ProductController from './controllers/productController.js'
 
-// Global Variables
-import ACTION_TYPES from './global/globalActionTypes.js'
-import Product from './containers/Products.jsx'
-import CartController from './controllers/cartController.js'
+// Hooks
+import { useApp } from './Hooks/useApp.jsx'
+
+// Reducers
+import AppReducer from './reducers/appReducer.js'
+import LogInForm from './containers/Log-in.jsx'
+
+
 
 function App(){
   const initialStates = {
@@ -29,79 +34,20 @@ function App(){
     data: null,
     error: null,
     cart: [],
-    cartItems: null
+    cartItems: null,
+    token: null,
+    isLoggedIn: false
   }
 
-  function reducer(state,action){
-    switch(action.type){
-      case ACTION_TYPES.FETCH_SUCCESS: return{
-        ...state,
-        loading: false,
-        data: action.payload
-      };
-
-      case ACTION_TYPES.FETCH_ERROR: return{
-        ...state,
-        loading: false,
-        error: action.error
-      }
-
-      case ACTION_TYPES.ADD_TO_CART: return{
-        ...state,
-        cart: [action.cartItem,...state.cart]
-      }
-
-      case ACTION_TYPES.FETCH_CART_ITEMS.FETCH_SUCCESS: return{
-        ...state,
-        loading: false,
-        cartItems: action.cartItems
-      }
-
-      case ACTION_TYPES.FETCH_CART_ITEMS.FETCH_ERROR: return {
-        ...state,
-        loading: false,
-        error: action.fetch_error
-      }
-
-      
-      default:
-        state
-    }
-  }
-
-  const [state, dispatch] = useReducer(reducer, initialStates)
-  console.log(state.cart)
-    useEffect(() => {
-      async function fetchProducts(dispatch){
-        try {
-          const productController = new ProductController();
-          const products = await productController.getProducts();
-          dispatch({type: ACTION_TYPES.FETCH_SUCCESS, payload: products})
-        } catch (error) {
-          dispatch({type: ACTION_TYPES.FETCH_ERROR, error: error.message})
-        }
-      }
-
-      async function fetchCartItems(dispatch){
-        try{
-          const cartController = new CartController();
-          const cartItems = await cartController.getItems();
-          dispatch({type: ACTION_TYPES.FETCH_CART_ITEMS.FETCH_SUCCESS, cartItems: cartItems})
-        }
-        catch(error){
-          dispatch({type: ACTION_TYPES.FETCH_CART_ITEMS.FETCH_ERROR, fetch_error: error.message})
-        }
-      }
-      if(state.data == null){
-        fetchProducts(dispatch)
-      }
-
-      fetchCartItems(dispatch)
-    },[])
+  const [state, dispatch] = useReducer(AppReducer, initialStates)
+  // Mount hook
+  useApp(dispatch,state)
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{width: '100vw',minHeight: '100vh', position: 'relative'}}>
         <Routes>
+          <Route path='/sign-up' element={<SignUpForm />} />
+          <Route path='/log-in' element={<LogInForm appDispatch={dispatch} />} />
           <Route path='/' element={<MainLayout cartItems={state.cart.length} />}>
             <Route index element={<Home products={state.data}/>} />
             <Route path='cart' element={<Cart cartItems={state.cartItems}/>} />

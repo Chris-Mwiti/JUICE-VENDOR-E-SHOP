@@ -43,7 +43,7 @@ const CartSummary = ({cartItems}) => {
           dispatch({type: "fetchPromoSuccess", codes: codes})
           return codes
         }
-        catch(error){
+        catch(error){ 
           dispatch({type: "fetchPromoError", error: error.message})  
         }
     }

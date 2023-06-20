@@ -1,4 +1,76 @@
 {
+  "users": [
+    {
+      "firstname": "Isaac",
+      "lastname": "Newton",
+      "email": "isaac@gmail.com",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "firstname": "Lewis",
+      "lastname": "Koome",
+      "email": "koome@gmail.com",
+      "password": "koome",
+      "id": 2
+    },
+    {
+      "firstname": "Justin",
+      "lastname": "Mutethia",
+      "email": "justin@gmail.com",
+      "password": "j123",
+      "id": 3
+    },
+    {
+      "firstname": "Simon",
+      "lastname": "Musa",
+      "email": "musa@gmail.com",
+      "password": "m123",
+      "id": 4
+    },
+    {
+      "firstname": "Adam",
+      "lastname": "Eve",
+      "email": "adam@gmail.com",
+      "password": "adam",
+      "id": 5
+    },
+    {
+      "firstname": "Zack",
+      "lastname": "Queen",
+      "email": "queen@gmail.com",
+      "password": "q123",
+      "id": 6
+    },
+    {
+      "firstname": "Zack",
+      "lastname": "Queen",
+      "email": "queen@gmail.com",
+      "password": "q123",
+      "id": 7
+    },
+    {
+      "firstname": "Zackaria",
+      "lastname": "QueenEnBurg",
+      "email": "queenBurg@gmail.com",
+      "password": "q123B",
+      "id": 8
+    },
+    {
+      "firstname": "Derrick",
+      "lastname": "Otieno",
+      "email": "derrick@gmail.com",
+      "password": "d123",
+      "id": 9
+    },
+    {
+      "firstname": "Isaac",
+      "lastname": "Otieno",
+      "email": "otieno@gmail.com",
+      "password": "d123",
+      "id": 10
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -95,11 +167,19 @@
       "description": "A blend of both Mango and Avocado fruits",
       "quantity": "3",
       "total": 150
+    },
+    {
+      "id": 1,
+      "title": "Mango Juice",
+      "price": "50",
+      "image": "/Images/Products/mango smoothie  1.png",
+      "category": "Mango",
+      "description": "Pure blend of Mango Juice Flavour",
+      "quantity": "5",
+      "total": 250
     }
   ],
-  "orders":[
-    
-  ],
+  "orders": [],
   "discountCodes": [
     {
       "id": 1,

@@ -10,6 +10,10 @@ const ACTION_TYPES = {
         FETCH_SUCCESS: "fetchSucess",
         FETCH_ERROR: "fetcherror",
         CALCULATE_TOTAL: "calculateTotal"
+    },
+    CHECK_LOGGEDIN_STATUS:{
+        IS_LOGGED_IN:"isLoggedIn",
+        IS_LOGGED_OUT: "isLoggedOut"
     }
 
 }

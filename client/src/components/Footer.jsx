@@ -37,11 +37,11 @@ export const Footer = () => {
             <List>
                 {links.map((link) => (
                     <Link to={`/${link}`} key={link.id}>
-                    <ListItem key={link} disablePadding>
-                        <ListItemButton sx={{paddingX: '0', margin: 0}}>
-                            <ListItemText primary={link}></ListItemText>
-                        </ListItemButton>
-                    </ListItem>
+                        <ListItem key={link.id} disablePadding>
+                            <ListItemButton sx={{paddingX: '0', margin: 0}}>
+                                <ListItemText primary={link}></ListItemText>
+                            </ListItemButton>
+                        </ListItem>
                     </Link>
                 ))}
             </List>

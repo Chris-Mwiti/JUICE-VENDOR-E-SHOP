@@ -105,10 +105,10 @@ const Navbar = ({cartItems}) => {
 
         {/* Register Options Button */}
         <Stack direction='row' spacing={3} display={{xs: 'none', md: 'flex'}}>
-            <Link to={'/Sign-up'}>
+            <Link to={'/sign-up'}>
               <Button startIcon={<PersonAdd />} variant='outlined'>Sign Up</Button>
             </Link>
-            <Link to={'/Log-in'}>
+            <Link to={'/log-in'}>
               <Button startIcon={<Login />} variant='outlined'>Login</Button>
             </Link>
         </Stack>
