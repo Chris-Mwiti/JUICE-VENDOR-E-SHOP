@@ -48,7 +48,7 @@ function App(){
         <Routes>
           <Route path='/sign-up' element={<SignUpForm />} />
           <Route path='/log-in' element={<LogInForm appDispatch={dispatch} />} />
-          <Route path='/' element={<MainLayout cartItems={state.cart.length} />}>
+          <Route path='/' element={<MainLayout cartItems={state.cartItems && state.cartItems.length} isLoggedIn={state.isLoggedIn} />}>
             <Route index element={<Home products={state.data}/>} />
             <Route path='cart' element={<Cart cartItems={state.cartItems}/>} />
             <Route path='/product/:id/:category' element={<Product dispatchCart={dispatch}/>}></Route>

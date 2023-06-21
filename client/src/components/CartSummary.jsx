@@ -63,7 +63,7 @@ const CartSummary = ({cartItems}) => {
         })
     }
     return (
-        <Box width={{xs: '100%', md: '30%'}} height={'100%'} display={'flex'} flexDirection={'column'} paddingX={3} paddingY={2}  gap={2} sx={{backgroundColor: '#e7e7e7'}}>
+        <Box width={{xs: '100%', md: '30%'}} maxHeight={'700px'} display={'flex'} flexDirection={'column'} paddingX={3} paddingY={2}  gap={2} sx={{backgroundColor: '#e7e7e7'}}>
             <Typography variant="h5">Order Summary</Typography>
             <hr></hr>
             <Stack direction={'row'} justifyContent={'space-between'} width={'100%'}>

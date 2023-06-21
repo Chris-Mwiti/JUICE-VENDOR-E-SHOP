@@ -177,6 +177,26 @@
       "description": "Pure blend of Mango Juice Flavour",
       "quantity": "5",
       "total": 250
+    },
+    {
+      "id": 4,
+      "title": "Pineapple Juice",
+      "price": "50",
+      "image": "/Images/Products/pineapple smoot 1.png",
+      "category": "Pineapple",
+      "description": "Pure blend of Banana Pineapple Juice Flavour",
+      "quantity": "3",
+      "total": 150
+    },
+    {
+      "id": 5,
+      "title": "Apple Juice",
+      "price": "80",
+      "image": "/Images/Products/apple smoothies 0.png",
+      "category": "Apple",
+      "description": "Pure blend of Apple Juice Flavour",
+      "quantity": 1,
+      "total": 80
     }
   ],
   "orders": [],

@@ -21,13 +21,13 @@ model User {
   updatedAt DateTime @updatedAt
   session ShoppingSession?
   order OrderDetails?
-  refreshToken RefreshTokens?
+  refreshToken RefreshTokens[]
 }
 model RefreshTokens{
   id Int @id @default(autoincrement())
-  refreshToken String
+  refreshToken String @unique
   user User @relation(fields: [userId], references: [id])
-  userId Int @unique
+  userId Int 
 }
 
 // Product Management 

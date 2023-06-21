@@ -18,13 +18,31 @@ router.route('/')
             res.status(500);
         }
         else{
-            res.cookie('refresh_cookie',logInResponse.refresh_token,{ httpOnly: true, maxAge: 24 * 60 * 60 * 100});
-            res.cookie('access_token', logInResponse.access_token,{httpOnly: true, maxAge: 15 * 60 * 100});
+            res.cookie('refresh_token',logInResponse.refresh_token,{ httpOnly: true, maxAge: 24 * 60 * 60 * 1000});
+            res.cookie('access_token', logInResponse.access_token,{httpOnly: true, maxAge: 15 * 60 * 1000});
             res.status(202).json({message: "Success"})
         }
     })
-router.post('/check-user', async(req,res) => {
+router.get('/check-user', async(req,res) => {
     const userController = new UserController()
     const checkResponse = await userController.checkUser(req);
+    switch(checkResponse){
+        case 401:
+            res.status(401).json({message: "Unauthorized"})
+            break
+        case 403:
+            res.status(403).json({message: "Forbiden"})
+            break
+        case 500:
+            res.status(500).json({message: "Server error"})
+            break
+        case 200:
+            res.status(200).json({message: "Ok"})
+            break
+        default:
+            res.cookie("access_token", checkResponse.accessToken,{httpOnly: true, maxAge: 15 * 60 * 1000})
+            res.status(200).json({message: "Successful"})
+
+    }
 })
 module.exports = router

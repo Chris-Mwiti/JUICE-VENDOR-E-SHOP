@@ -43,6 +43,20 @@ class User {
             console.error(error)
         }
     }
+
+    async getRefreshToken(token){
+        try{
+            const response = await prisma.refreshTokens.findUnique({
+                where: {
+                    refreshToken:token
+                }
+            })
+            return response
+        }
+        catch(err){
+            console.error(err)
+        }
+    }
 }
 
 module.exports = User
