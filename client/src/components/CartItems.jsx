@@ -1,10 +1,10 @@
 import { Box, Stack, Typography,TableContainer,Table, TableHead, TableBody,TableRow, TextField } from "@mui/material";
 import { StyledTableCell, StyledTableRow } from "../styles/styledComponents";
-import { useState } from "react";
+import { useState,memo } from "react";
 
-const CartItems = ({cartItems,handleQuantityChange}) => {
+const CartItems = memo(function CartItems({cartItems,handleQuantityChange}){
     return ( 
-        <Box display={'flex'} flexDirection={'column'} width={{xs: '100%', md:'70%'}} maxHeight={'100%'} gap={2} paddingY={2}>
+        <Box display={'flex'} flexDirection={'column'} width={{xs: '100%', md:'100%'}} maxHeight={'100%'} gap={2} paddingY={2}>
             <Typography variant="h5">Shopping Cart</Typography>
             <hr></hr>
             <Stack direction={'column'} spacing={1} width={'100%'}>
@@ -44,6 +44,6 @@ const CartItems = ({cartItems,handleQuantityChange}) => {
             </Stack>
         </Box>
      );
-}
+})
  
 export default CartItems;

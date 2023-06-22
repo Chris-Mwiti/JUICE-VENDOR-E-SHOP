@@ -14,7 +14,8 @@ const ACTION_TYPES = {
     CHECK_LOGGEDIN_STATUS:{
         IS_LOGGED_IN:"isLoggedIn",
         IS_LOGGED_OUT: "isLoggedOut"
-    }
+    },
+    SHIPPING_DETAILS_SUBMIT: "handleShippingDetails",
 
 }
 

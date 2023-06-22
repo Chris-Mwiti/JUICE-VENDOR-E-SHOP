@@ -34,6 +34,8 @@ export function cartSummaryReducer(state,action){
             }
         }
 
+        case ACTION_TY
+
     }
 }
 

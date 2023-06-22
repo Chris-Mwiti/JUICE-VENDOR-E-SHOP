@@ -2,7 +2,7 @@
 import { Box, Button, CircularProgress, FormControl, FormHelperText, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 
 // React imports
-import { useState,useReducer } from "react";
+import { useState,useReducer, memo } from "react";
 
 // Reducers
 import { cartSummaryReducer } from "../reducers/cartReducers";
@@ -10,7 +10,7 @@ import { cartSummaryReducer } from "../reducers/cartReducers";
 // Controllers
 import DiscountController from "../controllers/discountController";
 
-const CartSummary = ({cartItems}) => {
+const CartSummary = memo(function CartSummary ({cartItems}){
     // Checks tho no of items in the cart
     const noOfCartItems = cartItems && cartItems.length
     // States to manage the code status of each code
@@ -31,6 +31,12 @@ const CartSummary = ({cartItems}) => {
             loading: true,
             error:{status: false, message: ""},
             codes: null
+        },
+        shippingDetails:{},
+        paymentType: "mpesa",
+        checkOut:{
+            loading: false,
+            error:{status: false, message: "There was an error while placing your order"}
         }
     }
     const [state,dispatch] = useReducer(cartSummaryReducer, initState)
@@ -109,6 +115,7 @@ const CartSummary = ({cartItems}) => {
             <Button variant="contained">CHECKOUT</Button>
         </Box>
      );
-}
+    
+})
  
 export default CartSummary;
