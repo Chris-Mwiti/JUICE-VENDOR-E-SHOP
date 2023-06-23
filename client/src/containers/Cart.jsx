@@ -1,32 +1,30 @@
-import { Box, Breadcrumbs, Stack, Typography } from "@mui/material";
+import { Alert, Box, Breadcrumbs, Snackbar, Stack, Typography } from "@mui/material";
 import { Container } from "../styles/styledComponents";
 import { Link } from "react-router-dom";
 import { NavigateNext } from "@mui/icons-material";
 import CartItems from "../components/CartItems";
 import { useReducer,memo } from "react";
-import ACTION_TYPES from "../global/globalActionTypes";
 import CartSummary from "../components/CartSummary";
 import { useCallback } from "react";
+import ShippingForm from "../components/CartShippingDetails";
+import { cartReducer } from "../reducers/cartReducers";
 
-const Cart = memo(function Cart({cartItems}){
+const Cart = memo(function Cart({cartItems,isLoggedIn}){
+    // State Managment
     const initState={
         cartItems: cartItems,
-        cartTotal:0
-    }
-    function reducer(state,action){
-        switch(action.type){
-            case "handleQuantityChange": return{
-                ...state,
-                cartItems: action.newCartItems
-            }
-            case ACTION_TYPES.FETCH_CART_ITEMS.CALCULATE_TOTAL: return{
-                ...state,
-                cartTotal: action.cartTotal
-            }
+        cartTotal:0,
+        shippingDetails:{},
+        paymentType: "mpesa",
+        snackBarStatus:{
+            open: false,
+            status: false,
+            message: ""
         }
     }
-    const [state,dispatch] = useReducer(reducer,initState)
+    const [state,dispatch] = useReducer(cartReducer,initState)
 
+    // Handlers
     const handleQuantityChange = useCallback((e,item) => {
        const {value} = e.target
        const cartItem = [...state.cartItems];
@@ -63,8 +61,9 @@ const Cart = memo(function Cart({cartItems}){
                 { state.cartItems && state.cartItems ? (
                 <Box width={'100%'} display={'flex'} flexDirection={'column'} gap={2} margin={0}>
                     <CartItems cartItems={state.cartItems} handleQuantityChange={handleQuantityChange} />
-                    <Stack display={'flex'} direction={{xs: 'column', md: 'row'}} justifyContent={'space-between'} width={'100%'} gap={{xs: 2, md: 0}}>
-                        <CartSummary cartItems={state.cartItems} />
+                    <Stack display={'flex'} direction={{xs: 'column', md: 'row'}} justifyContent={'space-around'} alignItems={'center'} width={'100%'} spacing={2}>
+                        <ShippingForm dispatch={dispatch} />
+                        <CartSummary cartItems={state.cartItems} cartDispatch={dispatch} shippingDetails={state.shippingDetails} isLoggedIn={isLoggedIn}/>
                     </Stack>
                 </Box>
                 
@@ -73,6 +72,11 @@ const Cart = memo(function Cart({cartItems}){
                     <Typography variant='h4' textAlign={'center'}>Ooops!!, You have no items in your cart</Typography>
                 </Box>)}
             </Box>
+            <Snackbar open={state.snackBarStatus.open} autoHideDuration={2000} onClose={() => dispatch({type: "closeSnackBar"})}>
+                <Alert onClose={() => dispatch({type: "closeSanckBar"})} severity={state.snackBarStatus.status ? 'success' : 'error'} sx={{ width: '100%' }}>
+                    {state.snackBarStatus.message}
+                </Alert>
+            </Snackbar>
 
         </Container>
     );

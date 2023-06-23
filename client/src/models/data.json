@@ -199,22 +199,523 @@
       "total": 80
     }
   ],
-  "orders": [],
+  "orderDetails": [
+    {
+      "cartTotal": 1040,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {},
+      "id": 1
+    },
+    {
+      "cartTotal": 1040,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {},
+      "id": 2
+    },
+    {
+      "cartTotal": 1140,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {
+        "county": "Meru",
+        "town": "Nkubu",
+        "street": "Ken uji",
+        "locationDesc": "Bora bora shop"
+      },
+      "id": 3
+    },
+    {
+      "cartTotal": 1140,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {
+        "county": "Meru",
+        "town": "Nkubu",
+        "street": "Ken uji",
+        "locationDesc": "Bora bora shop"
+      },
+      "id": 4
+    },
+    {
+      "cartTotal": 1140,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {
+        "county": "Meru",
+        "town": "Nkubu",
+        "street": "Ken uji",
+        "locationDesc": "Bora bora shop"
+      },
+      "id": 5
+    },
+    {
+      "cartTotal": 1140,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": "3",
+          "total": 240
+        }
+      ],
+      "shippingDetails": {
+        "county": "Meru",
+        "town": "Nkubu",
+        "street": "Ken uji",
+        "locationDesc": "Bora bora shop"
+      },
+      "id": 6
+    },
+    {
+      "cartTotal": 936,
+      "cartItems": [
+        {
+          "id": 8,
+          "title": "Watermelon Juice",
+          "price": "50",
+          "image": "/Images/Products/watermelon smoo 1.png",
+          "category": "Watermelon",
+          "description": "Pure blend of Watermelon Juice Flavour",
+          "quantity": "4",
+          "total": 200
+        },
+        {
+          "id": 2,
+          "title": "Strawberry Juice",
+          "price": "70",
+          "image": "/Images/Products/strawberry-smoothie (1).jpg",
+          "category": "Strawberry",
+          "description": "Pure blend of Strawberry Juice Flavour",
+          "quantity": "3",
+          "total": 210
+        },
+        {
+          "id": 6,
+          "title": "Mango Avocado Juice",
+          "price": "50",
+          "image": "/Images/Products/mango-avocado-2.jpg",
+          "category": "Mango",
+          "description": "A blend of both Mango and Avocado fruits",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 1,
+          "title": "Mango Juice",
+          "price": "50",
+          "image": "/Images/Products/mango smoothie  1.png",
+          "category": "Mango",
+          "description": "Pure blend of Mango Juice Flavour",
+          "quantity": "5",
+          "total": 250
+        },
+        {
+          "id": 4,
+          "title": "Pineapple Juice",
+          "price": "50",
+          "image": "/Images/Products/pineapple smoot 1.png",
+          "category": "Pineapple",
+          "description": "Pure blend of Banana Pineapple Juice Flavour",
+          "quantity": "3",
+          "total": 150
+        },
+        {
+          "id": 5,
+          "title": "Apple Juice",
+          "price": "80",
+          "image": "/Images/Products/apple smoothies 0.png",
+          "category": "Apple",
+          "description": "Pure blend of Apple Juice Flavour",
+          "quantity": 1,
+          "total": 80
+        }
+      ],
+      "shippingDetails": {
+        "county": "Nairobi",
+        "town": "Nairobi",
+        "street": "Madaraka ",
+        "locationDesc": "Neema Court: house no 24j"
+      },
+      "id": 7
+    }
+  ],
+  "orderItems": [],
+  "paymentType": [],
+  "shippingDetails": [],
   "discountCodes": [
     {
       "id": 1,
       "provider": "Lenny",
-      "code": "QWERTY"
+      "code": "QWERTY",
+      "value": "10"
     },
     {
       "id": 2,
       "provider": "Justin",
-      "code": "123ASD"
+      "code": "123ASD",
+      "value": "5"
     },
     {
       "id": 3,
       "provider": "Simon",
-      "code": "w23Er"
+      "code": "w23Er",
+      "value": "8"
     }
   ]
 }

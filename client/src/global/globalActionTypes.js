@@ -16,6 +16,8 @@ const ACTION_TYPES = {
         IS_LOGGED_OUT: "isLoggedOut"
     },
     SHIPPING_DETAILS_SUBMIT: "handleShippingDetails",
+    HANDLE_CHECKOUT_SUCCESS: "checkOutSuccess",
+    HANDLE_CHECKOUT_ERROR: "checkOutError"
 
 }
 
