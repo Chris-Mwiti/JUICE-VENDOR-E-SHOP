@@ -6,6 +6,7 @@ const StyledAppBar = styled(AppBar)({
   position: 'absolute',
   zIndex: 5,
   height: '60px',
+  width: '100%',
   backgroundColor: 'rgba(  0, 0, 0, 0.35 )',
   boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
   backdropFilter: 'blur(8px)',

@@ -25,6 +25,7 @@ import { useApp } from './Hooks/useApp.jsx'
 // Reducers
 import AppReducer from './reducers/appReducer.js'
 import LogInForm from './containers/Log-in.jsx'
+import Shop from './containers/Shop.jsx'
 
 
 
@@ -44,13 +45,14 @@ function App(){
   useApp(dispatch,state)
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{width: '100vw',minHeight: '100vh', position: 'relative'}}>
+      <Box sx={{width: '100%',minHeight: '100vh', position: 'relative'}} overflow={'hidden'}>
         <Routes>
           <Route path='/sign-up' element={<SignUpForm />} />
           <Route path='/log-in' element={<LogInForm appDispatch={dispatch} />} />
           <Route path='/' element={<MainLayout cartItems={state.cartItems && state.cartItems.length} isLoggedIn={state.isLoggedIn} />}>
             <Route index element={<Home products={state.data}/>} />
             <Route path='cart' element={<Cart cartItems={state.cartItems} isLoggedIn={state.isLoggedIn}/>} />
+            <Route path='shop' element={<Shop products={state.data} />} />
             <Route path='/product/:id/:category' element={<Product dispatchCart={dispatch}/>}></Route>
           </Route>
         </Routes>

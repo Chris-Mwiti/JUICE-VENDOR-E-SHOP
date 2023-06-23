@@ -8,14 +8,16 @@ import { Container } from "../styles/styledComponents";
 // React-Router components
 import {Link} from 'react-router-dom'
 
-const ProductsGrid = ({products}) => {
+const ProductsGrid = ({products,noOfItems}) => {
+    const maxProducts = noOfItems
+    const limitedProducts =products &&  products.slice(0,maxProducts)
     return ( 
-       <Container padding={2} display='flex' flexDirection='column' gap={3}>
+       <Container padding={1} display='flex' flexDirection='column' gap={3}>
             <Typography variant="h4" textAlign='center' color='primary'>Featured Products</Typography>
             <Typography variant="h3" color='#000' textAlign='center'>Our Products</Typography>
             <Typography variant="body1" textAlign='center'>Quench Your thirst with our refreshing juices</Typography>
             <div className="product-grid-container">
-               {products && products.map((product) => (
+               {products && limitedProducts.map((product) => (
                 <div className="product-grid-item" key={product.id}>
                    <Link to={`/product/${product.id}/${product.category}`}>
                         {product.image ? (
@@ -34,6 +36,7 @@ const ProductsGrid = ({products}) => {
                     </div>
                 </div>
                ))}
+               {}
             </div>
        </Container>
      );

@@ -72,7 +72,6 @@ const CartSummary = memo(function CartSummary ({cartItems,shippingDetails,isLogg
             // Apply the discount percentage to get the new value
             const newFinalTotal = totalPrice - discountCalculator(codes[indexOfCode].value,state.finalTotal);
             dispatch({type: "handleTotalChange", newTotal: newFinalTotal})
-            
         })
     }
 
