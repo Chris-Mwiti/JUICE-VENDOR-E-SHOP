@@ -6,34 +6,43 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 // Users Controller defination
 class UserController {
+    
     constructor(){
         this.statusCode = 200
         this.checkStatusCode = 200
     }
 
     async postUser(data){
+        // Check if type of data is an object and if not return a response status code of 400:Bad Request
         if(typeof(data) !== 'object') return this.statusCode = 400;
-        console.log('posting...')
+        // Hash the password and store it in the database
         const hashedPwd = await bcrypt.hash(data.password,10)
         const newData = {
             ...data,
             password: hashedPwd
         }
         const response = await new User().addUser(newData);
+        // Check if the response is undefined and if so return statusCode 500: Server Side Error
         if(response !== undefined) return response
         return this.statusCode = 500
         
     }
 
     async logInUser(data){
+        // Check if the type of data is an object and if not send a status code of bad request
         if(typeof(data) !== 'object') return this.statusCode = 400;
-        console.log(data)
+        // Get user from the database
         const response = await new User().getUser(data.email);
-        console.log(response)
+
+        // Check if there is an existing user or an error has occured
         if  (response == null) return this.statusCode = 401;
         if (response == undefined) return this.statusCode = 500;
+
+        // Compare encrypted password to the inputed password
         const matchPwd = await bcrypt.compare(data.password, response.password);
         if(!matchPwd) return this.statusCode = 401;
+
+        // Generate a new access token & refresh token for the user
         const access_token = jwt.sign(
             {"email": data.email},
             process.env.ACCESS_TOKEN_SECRET,
@@ -44,12 +53,15 @@ class UserController {
             process.env.REFRESH_TOKEN_SECRET,
             {expiresIn: '1d'}
         )
-
+        
+        // Add the refresh token to the database
         const tokenResponse = await new User().postRefreshToken(refresh_token,response.id).catch((e) => {
             return this.statusCode = 500;
         })
+        // If no refresh token is generated return a response of 500: Server side error
         if(!tokenResponse) return this.statusCode = 500;
         
+        // Return both access_token and refresh_token
         return {access_token,refresh_token}
     }
 
@@ -57,6 +69,7 @@ class UserController {
         // Check if the request has access_token & refresh_token cookies
         const cookies = req.cookies
         if(!cookies || !cookies.refresh_token && !cookies.access_token) return this.checkStatusCode = 401;
+        
         // Generate a new access token if the user has a refresh token but no access token
         if(cookies.refresh_token && !cookies.access_token){
             const refreshToken = cookies.refresh_token

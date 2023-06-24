@@ -6,8 +6,7 @@ router.route('/')
     .post(async (req,res,next) => {
         const userController = new UserController()
         const logInResponse = await userController.logInUser(req.body);
-        // @TODO: Error handling
-        console.log(logInResponse);
+        
         if(logInResponse == 400){
             res.status(400);
         }

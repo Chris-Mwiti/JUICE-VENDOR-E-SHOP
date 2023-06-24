@@ -12,7 +12,7 @@ class RegistrationController{
     }
 
     async addNewUser(){
-        try {
+        try{
             const response = await axios.post('http://localhost:5000/register',this.data,{cancelToken: this.source.token,withCredentials: true}).finally(() =>{
             this.source.cancel()
         })
