@@ -1,4 +1,5 @@
 const prisma = require('../configs/prismaConfig');
+const prismaErrHandler = require('../err/prismaErrHandler')
 
 // User Model Class defination
 class User {
@@ -10,10 +11,9 @@ class User {
         const response = await prisma.user.create({
             data: userInfo
         })
-        console.log(response);
         return response
-       }catch(e){
-        console.error(e);
+       }catch(err){
+            prismaErrHandler(err);
        }
     }
 
@@ -26,7 +26,7 @@ class User {
             return user
         }
         catch(err){
-            console.error(err)
+            prismaErrHandler(err);
         }
     }
 
@@ -39,8 +39,8 @@ class User {
                 }
             })
             return response
-        }catch(error){
-            console.error(error)
+        }catch(err){
+            prismaErrHandler(err);
         }
     }
 
@@ -54,7 +54,7 @@ class User {
             return response
         }
         catch(err){
-            console.error(err)
+            prismaErrHandler(err);
         }
     }
 }

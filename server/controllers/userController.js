@@ -13,14 +13,16 @@ class UserController {
 
     async postUser(data){
         if(typeof(data) !== 'object') return this.statusCode = 400;
+        console.log('posting...')
         const hashedPwd = await bcrypt.hash(data.password,10)
         const newData = {
             ...data,
             password: hashedPwd
         }
         const response = await new User().addUser(newData);
-        console.log(response);
-        return response
+        if(response !== undefined) return response
+        return this.statusCode = 500
+        
     }
 
     async logInUser(data){
@@ -29,6 +31,7 @@ class UserController {
         const response = await new User().getUser(data.email);
         console.log(response)
         if  (response == null) return this.statusCode = 401;
+        if (response == undefined) return this.statusCode = 500;
         const matchPwd = await bcrypt.compare(data.password, response.password);
         if(!matchPwd) return this.statusCode = 401;
         const access_token = jwt.sign(
@@ -60,7 +63,8 @@ class UserController {
             let accessToken = "";
             const refreshTokenModel = new User()
             const response =  await refreshTokenModel.getRefreshToken(refreshToken);
-            if (response == undefined || null) return this.checkStatusCode = 403;
+            if (response == null) return this.checkStatusCode = 403;
+            if(response == undefined) return this.checkStatusCode = 500;
 
             // Verify the refresh token
             jwt.verify(

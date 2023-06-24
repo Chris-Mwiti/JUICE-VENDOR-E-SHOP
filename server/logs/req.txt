@@ -1,0 +1,17 @@
+230624	15:34:17	 function randomUUID(options) {
+  if (options !== undefined)
+    validateObject(options, 'options');
+  const {
+    disableEntropyCache = false,
+  } = options || kEmptyObject;
+
+  validateBoolean(disableEntropyCache, 'options.disableEntropyCache');
+
+  return disableEntropyCache ? getUnbufferedUUID() : getBufferedUUID();
+}	POST	undefined	/register
+230624	16:11:44	 95ad2c6b-797d-4717-b44c-ebe12be2ef15	POST	undefined	/register
+230624	16:14:18	 c0f8891e-27a3-4a15-861c-d124e1ee7457	POST	undefined	/register
+230624	16:16:34	 42cee2d0-1fd4-478c-bd1a-30a211d4a86f	POST	undefined	/register
+230624	16:22:59	 7260a17a-b798-4a56-b7d3-d975f75229d6	POST	undefined	/register
+230624	16:24:54	 41d1944d-604f-4c8e-8ea0-f8c42e7184b5	POST	undefined	/register
+230624	16:25:31	 ded7fd70-a249-46ad-a076-f3dbacaef82e	POST	undefined	/register

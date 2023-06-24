@@ -10,18 +10,29 @@ app.use(cors(corsConfig));
 
 // Middlewares setup
 const cookieParser = require('cookie-parser');
+const errHandler = require('./middlewares/errHandler');
+const {logEvents} = require('./middlewares/logger');
+
+// Cookie parser middleware set up
 app.use(cookieParser())
+
 // Parsing the form data into urlencoded version
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-const {logEvents} = require('./middlewares/logger');
+
 
 // Logger
+app.use(logEvents);
 
 // Routes
 app.use('/register', require('./routes/register'));
 app.use('/log-in', require('./routes/logIn'));
 
+
+
+
+// Error Middleware handler
+app.use(errHandler)
 // app.use(logEvents)
 app.listen(process.env.STAGING_PORT,() => {
     console.log(`The server is up and running on server ${process.env.STAGING_PORT}`)

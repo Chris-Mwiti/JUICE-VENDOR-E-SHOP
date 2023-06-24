@@ -1,0 +1,69 @@
+230624	16:16:38	 b43429d5-29e4-40ce-860d-9bce18d4c3b5	Error	
+Invalid `prisma.user.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:11:44
+
+   8 }
+   9  async addUser(userInfo){
+  10     try{
+→ 11      const response = await prisma.user.create(
+Can't reach database server at `localhost`:`3306`
+
+Please make sure your database server is running at `localhost`:`3306`.
+230624	16:23:03	 a94c34ed-87e0-4a15-b187-7bf8b24dffa7	Error	
+Invalid `prisma.user.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:11:44
+
+   8 }
+   9  async addUser(userInfo){
+  10     try{
+→ 11      const response = await prisma.user.create(
+Can't reach database server at `localhost`:`3306`
+
+Please make sure your database server is running at `localhost`:`3306`.
+
+230624	16:24:55	 af96d8bc-c1a6-42a4-8ef2-63923581d74c	Error	
+Invalid `prisma.user.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:11:44
+
+   8 }
+   9  async addUser(userInfo){
+  10     try{
+→ 11      const response = await prisma.user.create({
+            data: {
+              firstname: 'chris',
+              ~~~~~~~~~
+              lastname: 'mwiti',
+              ~~~~~~~~
+              email: 'cm@gmail.com',
+              password: '$2b$10$RYSoql4WBkAoVKZOeLrBzOMoZ8I50O7.Sq/m98UCRtfPX9r53D7Zy',
+          +   firstName: String,
+          +   lastName: String,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime,
+          ?   session?: {
+          ?     create?: ShoppingSessionCreateWithoutUserInput | ShoppingSessionUncheckedCreateWithoutUserInput,
+          ?     connectOrCreate?: ShoppingSessionCreateOrConnectWithoutUserInput,
+          ?     connect?: ShoppingSessionWhereUniqueInput
+          ?   },
+          ?   order?: {
+          ?     create?: OrderDetailsCreateWithoutUserInput | OrderDetailsUncheckedCreateWithoutUserInput,
+          ?     connectOrCreate?: OrderDetailsCreateOrConnectWithoutUserInput,
+          ?     connect?: OrderDetailsWhereUniqueInput
+          ?   },
+          ?   refreshToken?: {
+          ?     create?: RefreshTokensCreateWithoutUserInput | RefreshTokensCreateWithoutUserInput | RefreshTokensUncheckedCreateWithoutUserInput | RefreshTokensUncheckedCreateWithoutUserInput,
+          ?     connectOrCreate?: RefreshTokensCreateOrConnectWithoutUserInput | RefreshTokensCreateOrConnectWithoutUserInput,
+          ?     createMany?: RefreshTokensCreateManyUserInputEnvelope,
+          ?     connect?: RefreshTokensWhereUniqueInput | RefreshTokensWhereUniqueInput
+          ?   }
+            }
+          })
+
+Unknown arg `firstname` in data.firstname for type UserCreateInput. Did you mean `firstName`?
+Unknown arg `lastname` in data.lastname for type UserCreateInput. Did you mean `lastName`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
