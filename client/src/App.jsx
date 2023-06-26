@@ -4,7 +4,7 @@ import { useReducer, useEffect } from 'react'
 // MUI COMPONETS
 import { ThemeProvider } from '@emotion/react'
 import {theme} from './theme/customTheme.js'
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 
 // Styling Files
 import './App.css'
@@ -26,6 +26,7 @@ import { useApp } from './Hooks/useApp.jsx'
 import AppReducer from './reducers/appReducer.js'
 import LogInForm from './containers/Log-in.jsx'
 import Shop from './containers/Shop.jsx'
+import PageNotFound from './pages/404.jsx'
 
 
 
@@ -46,16 +47,21 @@ function App(){
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{width: '100%',minHeight: '100vh', position: 'relative'}} overflow={'hidden'}>
-        <Routes>
-          <Route path='/sign-up' element={<SignUpForm />} />
-          <Route path='/log-in' element={<LogInForm appDispatch={dispatch} />} />
-          <Route path='/' element={<MainLayout cartItems={state.cartItems && state.cartItems.length} isLoggedIn={state.isLoggedIn} />}>
-            <Route index element={<Home products={state.data}/>} />
-            <Route path='cart' element={<Cart cartItems={state.cartItems} isLoggedIn={state.isLoggedIn}/>} />
-            <Route path='shop' element={<Shop products={state.data} />} />
-            <Route path='/product/:id/:category' element={<Product dispatchCart={dispatch}/>}></Route>
-          </Route>
-        </Routes>
+       {state.loading ? (<CircularProgress size={'large'} />) : (
+          <Routes>
+            <Route path='/sign-up' element={<SignUpForm />} />
+            <Route path='/log-in' element={<LogInForm appDispatch={dispatch} />} />
+            {state.loading ? (<CircularProgress size={'large'} />) : (
+            <Route path='/' element={<MainLayout cartItems={state.cartItems && state.cartItems.length} isLoggedIn={state.isLoggedIn} />}>
+              <Route index element={<Home products={state.data}/>} />
+              <Route path='cart' element={<Cart cartItems={state.cartItems} isLoggedIn={state.isLoggedIn}/>} />
+              <Route path='shop' element={<Shop products={state.data} />} />
+              <Route path='/product/:id/:category' element={<Product dispatchCart={dispatch}/>}></Route>
+            </Route>
+            )}
+            <Route path='*' element={<PageNotFound/>} />
+          </Routes>
+       )}
       </Box>
     </ThemeProvider>
   )

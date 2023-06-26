@@ -1,14 +1,14 @@
 import axios from 'axios'
+import { httpErrorHandler } from '../errors/axiosErrorHandler'
 
 class RegistrationController{
-    constructor(data,id){
+    constructor(data,dispatch){
         this.data = data
-        this.id = id
         this.source = axios.CancelToken.source()
         this.BASE_URL = axios.create({
             baseURL: 'http://localhost:5000',
-            timeout: 1500
         })
+        this.dispatch = dispatch
     }
 
     async addNewUser(){
@@ -22,9 +22,9 @@ class RegistrationController{
         }
     }
 
-    async getUser(){
+    async getUser(id){
         try {
-            const user = await axios.get(`http://localhost:1100/users/${this.id}`,{cancelToken: this.source.token,withCredentials: true}).finally(() => {
+            const user = await axios.get(`http://localhost:1100/users/${id}`,{cancelToken: this.source.token,withCredentials: true}).finally(() => {
             this.source.cancel()
             return user.data
         })
@@ -36,11 +36,11 @@ class RegistrationController{
     async logInUser(){
         try{
             const response = await this.BASE_URL.post('/log-in',this.data,{withCredentials: true})
-            console.log(response)
+            console.log(response.status)
             return response
         }
-        catch(error){
-            console.error(error)
+        catch(err){
+            httpErrorHandler(err,this.dispatch)
         }
     }
 

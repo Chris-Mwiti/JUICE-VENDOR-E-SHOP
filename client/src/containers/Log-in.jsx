@@ -42,22 +42,15 @@ const LogInForm = ({appDispatch}) => {
         try {
             // Dispatch loading status & create an instance of the registartion controller
             dispatch({type: "loading"})
-            const registrationController = new RegistrationController(userData)
+            const registrationController = new RegistrationController(userData,dispatch)
             registrationController.logInUser().then((response) => {
-                if(response == undefined) return dispatch({type: "errorAuthenticatingUser", message: "We are having a technocal problem...Please try again later"});
-                switch(response.status){
-                    case 401: return dispatch({type: "errorAuthenticatingUser", message: "Unauthorized"})
-                    case 500: return dispatch({type: "errorAuthenticatingUser", message: "Please try again later"})
-                    case 202: 
-                        dispatch({type: "successAuthenticatingUser"});
-                        appDispatch({type: ACTION_TYPES.CHECK_LOGGEDIN_STATUS.IS_LOGGED_IN});
-                        break
-                    default: 
-                        dispatch({type: "errorAuthenticatingUser", message: "Please try agin later"});
-                }
+              if(response.status == undefined) return
+              
+              dispatch({type: "successAuthenticatingUser"});
+              appDispatch({type: ACTION_TYPES.CHECK_LOGGEDIN_STATUS.IS_LOGGED_IN});
             })
         } catch (error) {
-            console.error(error.message)
+            console.error(error)
         }
         
     }
