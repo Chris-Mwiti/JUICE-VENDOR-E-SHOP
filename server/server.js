@@ -12,6 +12,7 @@ app.use(cors(corsConfig));
 const cookieParser = require('cookie-parser');
 const errHandler = require('./middlewares/errHandler');
 const {logEvents} = require('./middlewares/logger');
+const CategoriesController = require('./controllers/categoriesController');
 
 // Cookie parser middleware set up
 app.use(cookieParser())
@@ -27,7 +28,7 @@ app.use(logEvents);
 // Routes
 app.use('/register', require('./routes/register'));
 app.use('/log-in', require('./routes/logIn'));
-
+app.use('/categories', require('./routes/categories'));
 
 
 

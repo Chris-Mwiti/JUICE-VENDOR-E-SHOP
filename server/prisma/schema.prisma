@@ -10,6 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// @TODO: Tables id's should correspond with the tables name short form
+
 // User Management Database structure
 model User {
   id Int @id @default(autoincrement())
@@ -58,7 +60,7 @@ model ProductAsset {
 }
 model Category{
   id Int @id @default(autoincrement())
-  categoryName String @db.VarChar(255)
+  categoryName String @db.VarChar(255) @unique
   categoryDescription String @db.VarChar(255)
   product Product[]
   createdAt DateTime @default(now())
@@ -67,7 +69,8 @@ model Category{
 model Inventory{
   id Int @id @default(autoincrement())
   quantity Int
-  product Product?
+  productName String @unique
+  product Product? 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt 
 }

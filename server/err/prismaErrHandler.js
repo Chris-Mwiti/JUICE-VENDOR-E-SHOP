@@ -8,12 +8,14 @@ const prismaErrHandler = (err) => {
     // Check if the error is a PrismaClientExpectetionError
     switch(err.code){
         case 'P2001':return errStatus.code = 400
+        case 'P2002': return errStatus.code = 400
         case 'P2025': return errStatus.code = 400
         default:
-            errStatus.code = err.code
+            errStatus.code = 500
         }
+
     logger(`${errStatus.code}\t${errStatus.message}\n`, 'prismaErrLog.txt');
-    throw err
+    return errStatus.code
 }
 
 module.exports = prismaErrHandler
