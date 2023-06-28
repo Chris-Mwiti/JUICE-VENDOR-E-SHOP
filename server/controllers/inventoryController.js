@@ -9,11 +9,12 @@ class InventoryController{
         this.req = req,
         this.res = res
         this.inventoryModel = new Inventory(req.body.quantity,req.body.product)
+        this.inventoryParam = req.params.inventoryName
     }
 
     async addItem(){
         const response = await this.inventoryModel.addItem();
-        new ResponseHandler(response,this.res).postResponse()
+        new ResponseHandler(response,this.res).postResponse();
     }
 
     async getItems(){
@@ -22,18 +23,18 @@ class InventoryController{
     }
 
     async getItem(){
-        const item = await this.inventoryModel.getItem();
-        new ResponseHandler(item,this.res).getResponse()
+        const item = await this.inventoryModel.getItem(this.inventoryParam);
+        new ResponseHandler(item,this.res).getResponse();
     }
 
     async updateItem(){
-        const response = await this.inventoryModel.updateItem();
-        new ResponseHandler(response,this.res)
+        const response = await this.inventoryModel.updateItem(this.inventoryParam);
+        new ResponseHandler(response,this.res).updatesResponse();
     }
 
     async deleteItem(){
-        const response = await this.inventoryModel.deleteItem();
-        new ResponseHandler(response,this.res);
+        const response = await this.inventoryModel.deleteItem(this.inventoryParam);
+        new ResponseHandler(response,this.res).deleteResponse();
     }
 }
 

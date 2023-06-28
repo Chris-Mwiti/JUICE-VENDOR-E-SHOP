@@ -19,14 +19,13 @@ class CategoriesController{
 
     async getCategories(){
         const categories = await this.categoriesModel.getCategories();
-        new ResponseHandler(categories,this.res).getResponse()
+        new ResponseHandler(categories,this.res).getResponse();
     }
 
     async getCategory(){
         const { categoryName } = this.req.params
         const category = await this.categoriesModel.getCategory(categoryName);
         new ResponseHandler(category,this.res).getResponse()
-
     }
 
     async updateCategory(){

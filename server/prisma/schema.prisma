@@ -76,7 +76,7 @@ model Inventory{
 }
 model Discount{
   id Int @id @default(autoincrement())
-  coupon String?
+  coupon String? @unique
   percentage Int
   status Boolean @default(true)
   product Product[]
