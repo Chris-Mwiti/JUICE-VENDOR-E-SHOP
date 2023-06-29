@@ -29,6 +29,7 @@ class ProductController{
     }
 
     async updateProduct(){
+        Number(this.productId)
         const response = await this.productModel.updateProduct(this.productId);
         new ResponseHandler(response,this.res).updatesResponse()
     }

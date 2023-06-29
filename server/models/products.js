@@ -41,7 +41,7 @@ class Products {
             })
             return response
         }catch(err){
-            console.log(err)
+            prismaErrHandler(err)
         }
         
     }
@@ -74,17 +74,18 @@ class Products {
     }
 
     async updateProduct(productId){
+        const numId = Number(productId)
         try{
            const response = await prisma.product.update({
             where:{
-                id: productId
+                id: numId
             },
             data:{
                 productName: this.name,
                 productDescription: this.desc,
                 asset:{
                     connect:{
-                        id: productId
+                        id: numId
                     }
                 },
                 category:{
@@ -109,7 +110,7 @@ class Products {
            })
            return response 
         }catch(err){
-            prismaErrHandler(err)
+            console.error(err);
         }
     }
 

@@ -256,3 +256,6 @@
 230628	18:52:49	 37e633af-4e9d-4928-9eda-d169463025b7	GET	undefined	/products
 230628	18:53:50	 fb183792-d150-4092-8a21-29ba590fe585	PATCH	undefined	/products
 230628	18:54:09	 3920a455-c111-48c8-83fc-5aaabcbb3447	GET	undefined	/products/
+230628	19:18:38	 e93e60ef-8442-4448-b26c-bfca59e24c95	PUT	undefined	/products/1
+230628	20:24:51	 db6946fd-71c3-4f43-88ff-f38937254b3a	PUT	undefined	/products/1
+230628	20:25:58	 6914c06f-b226-45bc-9f61-86763e333f3b	PUT	undefined	/products/1

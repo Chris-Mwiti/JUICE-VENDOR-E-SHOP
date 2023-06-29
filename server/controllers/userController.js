@@ -1,9 +1,12 @@
 // Dependancies models
 const User = require('../models/users')
+// Generators
+const tokenGenerators = require('JWT/generators/tokenGenerators');
 
 // Dependancies encryption
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 // Users Controller defination
 class UserController {
     
@@ -41,19 +44,9 @@ class UserController {
         // Compare encrypted password to the inputed password
         const matchPwd = await bcrypt.compare(data.password, response.password);
         if(!matchPwd) return this.statusCode = 401;
-
-        // Generate a new access token & refresh token for the user
-        const access_token = jwt.sign(
-            {"email": data.email},
-            process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: '900s'}
-        )
-        const refresh_token = jwt.sign(
-            {"email": data.email},
-            process.env.REFRESH_TOKEN_SECRET,
-            {expiresIn: '1d'}
-        )
-        
+    
+        // Generators access_token & refresh_token
+        const { access_token,refresh_token} = tokenGenerators(data)
         // Add the refresh token to the database
         const tokenResponse = await new User().postRefreshToken(refresh_token,response.id).catch((e) => {
             return this.statusCode = 500;

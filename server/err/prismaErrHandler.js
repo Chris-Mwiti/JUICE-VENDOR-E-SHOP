@@ -15,7 +15,7 @@ const prismaErrHandler = (err) => {
         }
 
     logger(`${errStatus.code}\t${errStatus.message}\n`, 'prismaErrLog.txt');
-    throw err
+    console.error(err)
     return errStatus.code
 }
 
