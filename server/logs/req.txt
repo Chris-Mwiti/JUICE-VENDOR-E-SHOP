@@ -289,3 +289,4 @@
 230630	11:51:06	 747312d9-d4e2-4f35-9810-1632129fb217	PUT	undefined	/products/4
 230630	11:51:31	 64ed4c42-90e1-4829-a044-2c2c8f069e9d	PUT	undefined	/products/4
 230630	13:27:50	 eacc409d-e6ca-43ee-9ac5-e0cf82711362	PUT	undefined	/products/4
+230630	13:46:05	 13ec2900-6139-4485-87f8-327951f84b9f	POST	undefined	/log-in
