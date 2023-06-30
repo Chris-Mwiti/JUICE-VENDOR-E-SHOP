@@ -1,7 +1,7 @@
 // Dependancies models
 const User = require('../models/users')
 // Generators
-const tokenGenerators = require('JWT/generators/tokenGenerators');
+const tokenGenerators = require('../JWT/generators/tokenGenerators');
 
 // Dependancies encryption
 const bcrypt = require('bcrypt');

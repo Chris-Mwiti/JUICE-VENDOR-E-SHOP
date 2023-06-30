@@ -8,7 +8,7 @@ class ProductController{
     constructor(req,res){
         this.req = req,
         this.res = res,
-        this.productModel = new Product(req.body.name,req.body.category,req.body.price,req.body.description,req.body.discount),
+        this.productModel = new Product(req.body.name,req.body.category,req.body.price,req.body.description,req.body.discount,req.body.assetImage,req.body.quantity),
         this.productId = req.params.productId
     }
 

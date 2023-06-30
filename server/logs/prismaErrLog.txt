@@ -67,3 +67,253 @@ Argument lastName for data.lastName is missing.
 Note: Lines with + are required, lines with ? are optional.
 
 
+230630	10:22:06	 82538f04-eb50-4d38-ba62-3b270241493a	500	
+Invalid `prisma.product.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\products.js:16:51
+
+  13 
+  14 async addProduct(){
+  15     try{
+→ 16         const response = await prisma.product.create({
+               data: {
+                 productName: 'Strawberry',
+                 price: 50,
+                 productDescription: 'The juice is made out of pure strawberry fruit',
+                 inventory: {
+                   connect: {
+                     productName: 'Strawberry'
+                   }
+                 },
+                 discount: {
+                   connect: {
+                     coupon: 'QWERTZ'
+                   }
+                 },
+                 asset: {
+                   create: {
+             +       image: String,
+             ?       createdAt?: DateTime,
+             ?       updatedAt?: DateTime
+                   }
+                 },
+                 category: {
+                   connect: {
+                     categoryName: 'Strawberry'
+                   }
+                 }
+               }
+             })
+
+Argument image for data.asset.create.image is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:34:06	 381efe89-cd47-4525-955d-283ef007f380	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:36:54	 05f1f2c2-667a-48ca-82ad-cb0f1041ef85	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:41:12	 ca0430ad-b6ae-4677-9874-7cd8672ed88c	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:41:37	 c6d153cc-1271-4b32-be15-fb9d37874523	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:43:23	 486a7f22-ea2c-4f61-bc66-dd9e946d28fa	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:43:46	 d6fe6d20-9dc5-4a59-acbb-5f48b6048ba4	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:51:19	 336bae71-26f1-4db7-b926-a3d5bfcd92e6	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230630	10:56:50	 abc3b9c2-b416-464e-90a6-bf7bfe60169d	500	
+Invalid `prisma.inventory.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:12:53
+
+   9 
+  10 async addItem(){
+  11     try{
+→ 12         const response = await prisma.inventory.create({
+               data: {
+                 quantity: 40,
+             +   productName: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   product?: {
+             ?     create?: ProductCreateWithoutInventoryInput | ProductUncheckedCreateWithoutInventoryInput,
+             ?     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput,
+             ?     connect?: ProductWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument productName for data.productName is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+

@@ -1,13 +1,17 @@
 const prismaErrHandler = require('../err/prismaErrHandler');
 const prisma = require('../configs/prismaConfig');
 
+// @TODO: Change the req params to support strings requests
+
 class Products {
-    constructor(name,category,price,desc,discountCoupon){
+    constructor(name,category,price,desc,discountCoupon,assetImage,quantity){
         this.name = name,
         this.category = category,
         this.price = price,
         this.desc = desc,
-        this.discountCoupon = discountCoupon
+        this.discountCoupon = discountCoupon,
+        this.productImage = assetImage,
+        this.quantity = quantity
     }
 
     async addProduct(){
@@ -18,8 +22,15 @@ class Products {
                     price: this.price,
                     productDescription: this.desc,
                     inventory:{
-                        connect:{
+                        connectOrCreate:{
+                           where:{
                             productName: this.name
+                           },
+                           create:{
+                            quantity: this.quantity,
+                            productName: this.name
+                           }
+                           
                         }
                     },
                     discount: {
@@ -29,7 +40,7 @@ class Products {
                     },
                     asset:{
                         create:{
-                            image: '../../client/public/Images/Products/banana-strawberry (1).jpg'
+                            image: this.productImage
                         }
                     },
                     category:{
@@ -61,10 +72,11 @@ class Products {
     }
 
     async getProduct(productId){
+        const numId = Number(productId)
         try{
             const product = await prisma.product.findUnique({
                 where:{
-                    id: productId
+                    id: numId,
                 }
             })
             return product
@@ -83,29 +95,33 @@ class Products {
             data:{
                 productName: this.name,
                 productDescription: this.desc,
-                asset:{
-                    connect:{
-                        id: numId
+                price: this.price,
+                category:{
+                    update:{
+                        categoryName: this.category
                     }
                 },
-                category:{
-                  connect:{
-                    categoryName: this.category
-                  }
-                },
                 inventory:{
-                    connect:{
-                        productName: this.name
+                    update:{
+                        quantity: this.quantity
+                    }
+                },
+                asset:{
+                    update:{
+                        image: this.productImage
                     }
                 },
                 discount:{
-                    connect:{
+                    update:{
                         coupon: this.discountCoupon
                     }
                 }
+                
+                
             },
             include:{
-                inventory: true
+                inventory: true,
+                asset: true
             }
            })
            return response 
@@ -115,10 +131,14 @@ class Products {
     }
 
     async deleteProduct(productId){
+        const numId = Number(productId)
         try{
             const response = await prisma.product.delete({
                 where:{
-                    id: productId
+                    id: numId
+                },
+                include:{
+                    asset: true
                 }
             })
             return response
