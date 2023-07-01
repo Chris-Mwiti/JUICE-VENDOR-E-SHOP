@@ -20,9 +20,8 @@ class ResponseHandlers{
         if(this.data == null || undefined) return this.res.status(500).json({message: "Server side error"});
         // Decode the jwt token to extract the token payload
         const decodedToken = await jwt.decode(access_token);
-        const existingPayload = decodedToken.payload
-        console.log(existingPayload);
-
+        const existingPayload = decodedToken
+        
         // Generate a new payload with the session id added
         const newPayload = {
             ...existingPayload,
@@ -30,7 +29,7 @@ class ResponseHandlers{
         }
 
         // Generate a new access token
-        const newAccessToken = await jwt.sign(newPayload,process.env.ACCESS_TOKEN_SECRET,{expiresIn: '900s'})
+        const newAccessToken = await jwt.sign(newPayload,process.env.ACCESS_TOKEN_SECRET)
 
         return this.res.cookie('access_token', newAccessToken,{httpOnly: true, maxAge: 15 * 60 * 1000}).status(201).json({message: "Created"});
 

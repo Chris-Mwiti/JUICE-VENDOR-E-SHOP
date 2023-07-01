@@ -9,7 +9,7 @@ router.use(verifyJwt)
 router.route('/')
     .get(async(req,res) => {
         const shoppingController = new ShoppingSessionController(req,res);
-        await shoppingController.getSesssion()
+        await shoppingController.getSession()
     })
     .post(async(req,res) => {
         const shoppingController = new ShoppingSessionController(req,res);

@@ -20,7 +20,7 @@ class ShoppingSession{
             })
             return response
         }catch(err){
-            prismaErrHandler(err);
+            console.error(err)
         }
     }
 
