@@ -10,6 +10,7 @@ class ShoppingSession{
     }
 
     async createSession(){
+        console.log(this.userId);
         try{
             const response = await prisma.shoppingSession.create({
                 data:{
@@ -19,7 +20,7 @@ class ShoppingSession{
             })
             return response
         }catch(err){
-            prismaErrHandler(err)
+            prismaErrHandler(err);
         }
     }
 
@@ -58,22 +59,22 @@ class ShoppingSession{
                 where:{
                     userId: userId
                 },
-                data: {
+                data: {  
                     total: this.total
                 }
             })
 
             return response
         }catch(err){
-            prismaErrHandler(err)
+            console.error(err);
         }
     }
 
-    async deleteSession(userId){
+    async deleteSession(sessionId){
         try{
             const response = await prisma.shoppingSession.delete({
                 where:{
-                    userId: userId
+                    id: sessionId
                 },
                 include: {
                     cartItems: true

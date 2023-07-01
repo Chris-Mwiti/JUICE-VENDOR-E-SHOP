@@ -317,3 +317,117 @@ Argument productName for data.productName is missing.
 Note: Lines with + are required, lines with ? are optional.
 
 
+230702	00:05:58	 841d8bb0-c9f7-4c9b-b79a-d22940cc9bd1	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+
+230702	00:42:21	 e007e9a5-520a-4207-8745-2de6913f11cd	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+
+230702	01:01:46	 ece0aee0-2f2b-4555-8bda-852176cbd95d	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+
+230702	01:02:04	 6c908bfe-6bb6-43c6-ae28-23c909f6b921	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+
+230702	01:07:28	 7394d6f1-d351-4947-b7e5-791538c24700	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+
+230702	01:08:49	 8b348290-a43f-40c4-9e3c-7fb294d57ae7	500	
+Invalid `prisma.user.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\users.js:23:44
+
+  20 async getUser(email){
+  21     console.log('checking')
+  22     try{
+→ 23         const user = await prisma.user.findUnique({
+               where: {
+             ?   email?: String,
+             ?   id?: Int
+               }
+             })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+

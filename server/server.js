@@ -12,6 +12,7 @@ app.use(cors(corsConfig));
 const cookieParser = require('cookie-parser');
 const errHandler = require('./middlewares/errHandler');
 const {logEvents} = require('./middlewares/logger');
+const verifyJwt = require('./middlewares/verifyJwt');
 
 // Cookie parser middleware set up
 app.use(cookieParser())
@@ -31,11 +32,11 @@ app.use('/categories', require('./routes/categories'));
 app.use('/inventory',require('./routes/inventory'));
 app.use('/discounts', require('./routes/discounts'));
 app.use('/products', require('./routes/products'));
-
+app.use('/sessions', require('./routes/shoppingSession'));
 
 // Error Middleware handler
 app.use(errHandler)
-// app.use(logEvents)
+
 app.listen(process.env.STAGING_PORT,() => {
     console.log(`The server is up and running on server ${process.env.STAGING_PORT}`)
 })
