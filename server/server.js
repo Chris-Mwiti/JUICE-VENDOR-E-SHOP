@@ -33,6 +33,7 @@ app.use('/inventory',require('./routes/inventory'));
 app.use('/discounts', require('./routes/discounts'));
 app.use('/products', require('./routes/products'));
 app.use('/sessions', require('./routes/shoppingSession'));
+app.use('/cart',require('./routes/cartItems'));
 
 // Error Middleware handler
 app.use(errHandler)

@@ -15,7 +15,12 @@ class CartItems{
                     productId: this.item,
                     quantity: this.quantity,
                     sessionId: this.sessionId
+                },
+                include: {
+                    product: true,
+                    session: true
                 }
+
             })
             return response
         }catch(err){
@@ -26,6 +31,9 @@ class CartItems{
     async getCartItems(){
         try{
             const items = await prisma.cartItems.findMany({
+                where: {
+                    sessionId: this.sessionId
+                },
                 include:{
                     session: true,
                     product: true
@@ -37,11 +45,11 @@ class CartItems{
         }
     }
 
-    async getCartItem(productId){
+    async getCartItem(cartItemId){
         try{
             const item = await prisma.cartItems.findUnique({
                 where:{
-                    productId: productId
+                    id: cartItemId
                 }
             })
             return item
@@ -50,14 +58,18 @@ class CartItems{
         }
     }
 
-    async updateCartItem(productId){
+    async updateCartItem(cartItemId){
         try{
             const response = await prisma.cartItems.update({
                 where:{
-                    productId: productId
+                    id: cartItemId
                 },
                 data:{
                     quantity: this.quantity
+                },
+                include: {
+                    session: true,
+                    product: true
                 }
             })
 
@@ -67,11 +79,24 @@ class CartItems{
         }
     }
 
-    async deleteCartItem(productId){
+    async deleteCartItem(cartItemId){
         try{
             const response = await prisma.cartItems.delete({
                 where:{
-                    productId: productId
+                    id: cartItemId
+                }
+            })
+            return response
+        }catch(err){
+            prismaErrHandler(err)
+        }
+    }
+
+    async deleteAllCartItems(){
+        try{
+            const response = await prisma.cartItems.deleteMany({
+                where:{
+                    sessionId: this.sessionId
                 }
             })
             return response

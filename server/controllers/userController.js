@@ -93,8 +93,20 @@ class UserController {
             return this.checkStatusCode = 200;
         }
 
-
     }
+
+    async generateUserId (req,res){
+        const {email} = req
+        // Fetch the user id from the database
+        const user = await new User().getUser(email);
+        // Check if the user response is valid
+        if (user == null || undefined) return res.status(403).json({message: "Forbidden"});
+        // Get the userid from the user object
+        const userId = user.id;
+        
+        return userId
+    }
+
 }
 
 module.exports = UserController;

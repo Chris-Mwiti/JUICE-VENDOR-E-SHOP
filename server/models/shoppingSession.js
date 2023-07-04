@@ -53,14 +53,14 @@ class ShoppingSession{
         }
     }
 
-    async updateSession(userId){
+    async updateSession(sessionId){
         try{
             const response = await prisma.shoppingSession.update({
                 where:{
-                    userId: userId
+                    id: sessionId
                 },
                 data: {  
-                    total: this.total
+                    total: this.total,
                 }
             })
 

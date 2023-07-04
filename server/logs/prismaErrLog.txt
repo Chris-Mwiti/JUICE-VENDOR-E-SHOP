@@ -431,3 +431,40 @@ Argument where of type UserWhereUniqueInput needs at least one argument. Availab
 Note: Lines with ? are optional.
 
 
+230704	08:35:08	 49d21c61-354c-4407-b1ea-88a2e837e33a	500	
+Invalid `prisma.cartItems.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\cartItems.js:13:53
+
+  10 
+  11 async addCartItem(){
+  12     try{
+→ 13         const response = await prisma.cartItems.create({
+               data: {
+                 productId: 1,
+                 ~~~~~~~~~
+                 quantity: 5,
+                 sessionId: undefined,
+             +   product: {
+             +     create?: ProductCreateWithoutCartItemInput | ProductUncheckedCreateWithoutCartItemInput,
+             +     connectOrCreate?: ProductCreateOrConnectWithoutCartItemInput,
+             +     connect?: ProductWhereUniqueInput
+             +   },
+             +   session: {
+             +     create?: ShoppingSessionCreateWithoutCartItemsInput | ShoppingSessionUncheckedCreateWithoutCartItemsInput,
+             +     connectOrCreate?: ShoppingSessionCreateOrConnectWithoutCartItemsInput,
+             +     connect?: ShoppingSessionWhereUniqueInput
+             +   }
+               },
+               include: {
+                 product: true,
+                 session: true
+               }
+             })
+
+Unknown arg `productId` in data.productId for type CartItemsCreateInput. Did you mean `product`?
+Argument product for data.product is missing.
+Argument session for data.session is missing.
+
+Note: Lines with + are required
+
+
