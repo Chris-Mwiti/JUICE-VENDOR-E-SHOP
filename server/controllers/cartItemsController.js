@@ -73,6 +73,8 @@ class CartItemsController{
         const { price } = response.product;
         const newTotalPrice = calculateTotalPrice(total,quantity,price);
 
+        const userId = await this.generateUserId()
+
         // Update the session id with the new total price
         const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSession(id);
 
