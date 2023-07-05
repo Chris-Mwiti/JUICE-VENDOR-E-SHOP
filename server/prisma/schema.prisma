@@ -47,7 +47,7 @@ model Product {
   asset ProductAsset @relation(fields: [assetId], references: [id])
   assetId Int @unique
   cartItem CartItems[] 
-  orderItem OrderItems?
+  orderItem OrderItems[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -90,6 +90,7 @@ model ShoppingSession{
   total Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  status String @default("pending")
   user User @relation(fields: [userId], references: [id])
   userId Int @unique
   cartItems CartItems[]
@@ -114,6 +115,7 @@ model OrderDetails{
   payment PaymentDetails @relation(fields: [paymentId], references: [id])
   paymentId Int @unique
   items OrderItems[]
+  status String @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -122,15 +124,17 @@ model OrderItems{
   order OrderDetails @relation(fields: [orderId], references: [id])
   orderId Int
   product Product @relation(fields: [productId], references: [id])
-  productId Int @unique
+  productId Int 
   quantity Int
+
+  @@unique([productId,orderId])
 }
 model PaymentDetails{
   id Int  @id @default(autoincrement())
   orderPayment OrderDetails?
   amount Int 
   provider String
-  status String @default("inactive")
+  status String @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

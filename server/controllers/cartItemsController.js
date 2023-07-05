@@ -43,7 +43,7 @@ class CartItemsController{
         const newTotalPrice = calculateTotalPrice(total,quantity,price);
 
         // Update the session id with the new total price
-        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSession(id);
+        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSessionTotal(id);
 
         new ResponseHanlders(updateResponse,this.res).updatesResponse();
 
@@ -70,13 +70,14 @@ class CartItemsController{
 
         // Calculate the total price of the cart item & calculate new session total price
         const { quantity } = response;
+
         const { price } = response.product;
         const newTotalPrice = calculateTotalPrice(total,quantity,price);
 
         const userId = await this.generateUserId()
 
         // Update the session id with the new total price
-        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSession(id);
+        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSessionTotal(id);
 
         new ResponseHanlders(updateResponse,this.res).updatesResponse();
     }

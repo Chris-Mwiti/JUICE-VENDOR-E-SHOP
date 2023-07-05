@@ -4,9 +4,10 @@ const prisma = require('../configs/prismaConfig');
 
 // @TODO: Research more about on sessions generators 
 class ShoppingSession{
-    constructor(total,userId){
+    constructor(total,userId,status){
         this.total = total,
-        this.userId = userId
+        this.userId = userId,
+        this.status = status
     }
 
     async createSession(){
@@ -53,7 +54,7 @@ class ShoppingSession{
         }
     }
 
-    async updateSession(sessionId){
+    async updateSessionTotal(sessionId){
         try{
             const response = await prisma.shoppingSession.update({
                 where:{
@@ -67,6 +68,22 @@ class ShoppingSession{
             return response
         }catch(err){
             console.error(err);
+        }
+    }
+
+    async updateSessionStatus(sessionId){
+        try{
+            const response = await prisma.shoppingSession.update({
+                where:{
+                    id: sessionId
+                },
+                data:{
+                    status: this.status
+                }
+            })
+            return response
+        }catch(err){
+           prismaErrHandler(err);
         }
     }
 

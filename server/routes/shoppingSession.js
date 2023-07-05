@@ -17,7 +17,7 @@ router.route('/')
     })
     .put(async(req,res) => {
         const shoppingController = new ShoppingSessionController(req,res);
-        await shoppingController.updateSession();
+        await shoppingController.updateSessionStatus();
     })
 
     

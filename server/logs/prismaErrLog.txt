@@ -468,3 +468,97 @@ Argument session for data.session is missing.
 Note: Lines with + are required
 
 
+230705	13:30:30	 1b847ce0-b683-4227-a300-58008d750775	500	
+Invalid `prisma.orderDetails.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\ordersDetails.js:15:56
+
+  12 
+  13 async createOrder(){
+  14     try{
+→ 15         const response = await prisma.orderDetails.create({
+               data: {
+                 total: 2010,
+                 userId: 15,
+                 ~~~~~~
+                 payment: {
+                   create: {
+             +       provider: String,
+                     amount: 2010,
+             ?       status?: String,
+             ?       createdAt?: DateTime,
+             ?       updatedAt?: DateTime
+                   }
+                 },
+             +   user: {
+             +     create?: UserCreateWithoutOrderInput | UserUncheckedCreateWithoutOrderInput,
+             +     connectOrCreate?: UserCreateOrConnectWithoutOrderInput,
+             +     connect?: UserWhereUniqueInput
+             +   },
+             ?   status?: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   items?: {
+             ?     create?: OrderItemsCreateWithoutOrderInput | OrderItemsCreateWithoutOrderInput | OrderItemsUncheckedCreateWithoutOrderInput | OrderItemsUncheckedCreateWithoutOrderInput,
+             ?     connectOrCreate?: OrderItemsCreateOrConnectWithoutOrderInput | OrderItemsCreateOrConnectWithoutOrderInput,
+             ?     createMany?: OrderItemsCreateManyOrderInputEnvelope,
+             ?     connect?: OrderItemsWhereUniqueInput | OrderItemsWhereUniqueInput
+             ?   }
+               },
+               include: {
+                 payment: true,
+                 items: true
+               }
+             })
+
+Unknown arg `userId` in data.userId for type OrderDetailsCreateInput. Did you mean `user`?
+Argument provider for data.payment.create.provider is missing.
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
+230705	13:32:39	 9696b814-a526-4b58-91f0-942d182da733	500	
+Invalid `prisma.orderDetails.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\ordersDetails.js:15:56
+
+  12 
+  13 async createOrder(){
+  14     try{
+→ 15         const response = await prisma.orderDetails.create({
+               data: {
+                 total: 2010,
+                 userId: 15,
+                 ~~~~~~
+                 payment: {
+                   create: {
+                     provider: 'mpesa',
+                     amount: 2010
+                   }
+                 },
+             +   user: {
+             +     create?: UserCreateWithoutOrderInput | UserUncheckedCreateWithoutOrderInput,
+             +     connectOrCreate?: UserCreateOrConnectWithoutOrderInput,
+             +     connect?: UserWhereUniqueInput
+             +   },
+             ?   status?: String,
+             ?   createdAt?: DateTime,
+             ?   updatedAt?: DateTime,
+             ?   items?: {
+             ?     create?: OrderItemsCreateWithoutOrderInput | OrderItemsCreateWithoutOrderInput | OrderItemsUncheckedCreateWithoutOrderInput | OrderItemsUncheckedCreateWithoutOrderInput,
+             ?     connectOrCreate?: OrderItemsCreateOrConnectWithoutOrderInput | OrderItemsCreateOrConnectWithoutOrderInput,
+             ?     createMany?: OrderItemsCreateManyOrderInputEnvelope,
+             ?     connect?: OrderItemsWhereUniqueInput | OrderItemsWhereUniqueInput
+             ?   }
+               },
+               include: {
+                 payment: true,
+                 items: true
+               }
+             })
+
+Unknown arg `userId` in data.userId for type OrderDetailsCreateInput. Did you mean `user`?
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+
