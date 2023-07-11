@@ -18,17 +18,6 @@ class UserController {
         this.res = res
     }
     
-    async generateUserId (req,res){
-        const {email} = req
-        // Fetch the user id from the database
-        const user = await new User().getUser(email);
-        // Check if the user response is valid
-        if (user == null || undefined) return res.status(403).json({message: "Forbidden"});
-        // Get the userid from the user object
-        const userId = user.id;
-        
-        return userId
-    }
     async postUser(){
         const { password } = this.req.body
         // Hash the password and store it in the database
@@ -43,8 +32,6 @@ class UserController {
         
     }
 
-    // @TODO: Refactor the code such that the userId is stored as a payload instead of user email in JWT token
-
     async logInUser(){
         const { email } = this.req.body
         // Get user from the database
@@ -58,8 +45,9 @@ class UserController {
         const matchPwd = await bcrypt.compare(this.req.body.password, response.password);
         if(!matchPwd) return this.res.status(401).json({message: "Wrong Password"});
     
+        const { id } = response
         // Generators access_token & refresh_token
-        const { access_token,refresh_token} = tokenGenerators(this.req.body);
+        const { access_token,refresh_token} = tokenGenerators(id);
         // Add the refresh token to the database
         const tokenResponse = await new User().postRefreshToken(refresh_token,response.id);
         if(!tokenResponse) return this.res.status(500). json({message: "Error while storing token"});
@@ -68,8 +56,7 @@ class UserController {
         await this.res.cookie('access_token',access_token,{httpOnly: true, maxAge: 15 * 60 * 1000});
 
         // Check if user has an existing session and if so append sessionId to the access_token payload
-        const userId = await this.generateUserId(this.req.body,this.res);
-        const isSessionAvailable = await new ShoppingSession().getSession(userId);
+        const isSessionAvailable = await new ShoppingSession().getSession(id);
         await new ResponseHandlers(isSessionAvailable,this.res).checkExistingSessions(access_token,refresh_token);
     }
 
@@ -102,7 +89,7 @@ class UserController {
             )
             // Return new access token
 
-            return this.res.cookie('access_token',access_token,{httpOnly: true, maxAge: 15 * 60 * 1000});
+            return this.res.cookie('access_token',accessToken,{httpOnly: true, maxAge: 15 * 60 * 1000}).status(200).json({message: "Ok"});
         }else{
             // User has an access token but no refresh token
             return this.res.status(200).json({message: "Ok"});

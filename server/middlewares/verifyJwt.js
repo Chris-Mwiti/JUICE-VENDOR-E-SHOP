@@ -12,7 +12,7 @@ const verifyJwt = (req,res,next) => {
         process.env.ACCESS_TOKEN_SECRET,
         (err,decode) =>{
             if(err) return res.status(403).json({message: "Forbiden"})
-            req.email = decode.email;
+            req.userId = decode.userId;
             next()
         }
     )

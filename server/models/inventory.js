@@ -34,15 +34,15 @@ class Inventory{
         }
     }
 
-    async updateItem(item){
+    async updateItem(productName,quantity){
         try{
             const response =  await prisma.inventory.update({
                 where:{
-                    productName: item
+                    productName: productName
                 },
                 data:{
-                    quantity: this.quantity
-                }
+                    quantity: quantity
+                },
             })
             return response
         }catch(err){

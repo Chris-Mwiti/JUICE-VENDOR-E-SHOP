@@ -25,6 +25,7 @@ class ShoppingSession{
         }
     }
 
+    // ADMIN PRIVILEGES
     async getSessions(){
         try{
             const sessions = await prisma.shoppingSession.findMany({
@@ -71,14 +72,14 @@ class ShoppingSession{
         }
     }
 
-    async updateSessionStatus(sessionId){
+    async updateSessionStatus(sessionId,status){
         try{
             const response = await prisma.shoppingSession.update({
                 where:{
                     id: sessionId
                 },
                 data:{
-                    status: this.status
+                    status: status
                 }
             })
             return response

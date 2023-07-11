@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
 
-function tokenGenerators(user){
+function tokenGenerators(userId){
      // Generate a new access token & refresh token for the user
     const access_token = jwt.sign(
-        {"email": user.email},
+        {"userId": userId },
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn: '900s'}
     )
     const refresh_token =  jwt.sign(
-        {"email": user.email},
+        {"userId": userId},
         process.env.REFRESH_TOKEN_SECRET,
         {expiresIn: '1d'}
     )

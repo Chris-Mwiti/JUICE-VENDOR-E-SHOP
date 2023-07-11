@@ -46,6 +46,7 @@ class OrderDetails{
         }
     }
 
+    // ADMIN PRIVELEGES
     async getOrders(){
         try{
             const orders = await prisma.orderDetails.findMany({
@@ -77,14 +78,15 @@ class OrderDetails{
         }
     }
 
-    async updateOrder(){
+    // ADMIN PRIVILEGE
+    async updateOrder(status,orderId){
         try{
             const response = await prisma.orderDetails.update({
                 where: {
-                    userId: this.userId
+                    id: orderId
                 },
                 data:{
-                    total: this.total,
+                    status: status
                 },
                 include:{
                     items: true
@@ -95,7 +97,7 @@ class OrderDetails{
             prismaErrHandler(err)
         }
     }
-
+    // ADMIN PRIVILEGE
     async deleteOrder(){
         try{
             const response = await prisma.orderDetails.delete({

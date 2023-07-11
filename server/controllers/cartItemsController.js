@@ -6,32 +6,20 @@ const ShoppingSession = require('../models/shoppingSession')
 const ResponseHanlders = require('../helpers/modelResponseHandlers');
 const calculateTotalPrice = require('../helpers/calculateTotalPrice');
 
-// Controllers
-const UserController = require('./userController');
-
-
 class CartItemsController{
     constructor(req,res){
         this.req = req,
         this.res = res,
         this.sessionId = req.sessionId,
         this.itemId = req.params.itemId,
+        this.userId = req.userId
         this.cartModel = new CartItems(req.body.product,req.body.quantity,this.sessionId)
-    }
-
-    // SERVER FUNCTIONALITIES
-    async generateUserId(){
-        const userId =  await new UserController().generateUserId(this.req,this.res);
-        return userId;
     }
 
     // CRUD OPERATIONS
     async addCartItem(){
         const response = await this.cartModel.addCartItem();
         if (response == null || undefined) return this.res.status(500).json({message: "Server side error"});
-
-        // Generate userId
-        const userId = await this.generateUserId()
 
         // Get the total and sessionId from the session table
         const { total } = response.session;
@@ -43,7 +31,7 @@ class CartItemsController{
         const newTotalPrice = calculateTotalPrice(total,quantity,price);
 
         // Update the session id with the new total price
-        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSessionTotal(id);
+        const updateResponse = await new ShoppingSession(newTotalPrice,this.userId).updateSessionTotal(id);
 
         new ResponseHanlders(updateResponse,this.res).updatesResponse();
 
@@ -74,10 +62,8 @@ class CartItemsController{
         const { price } = response.product;
         const newTotalPrice = calculateTotalPrice(total,quantity,price);
 
-        const userId = await this.generateUserId()
-
         // Update the session id with the new total price
-        const updateResponse = await new ShoppingSession(newTotalPrice,userId).updateSessionTotal(id);
+        const updateResponse = await new ShoppingSession(newTotalPrice,this.userId).updateSessionTotal(id);
 
         new ResponseHanlders(updateResponse,this.res).updatesResponse();
     }
@@ -88,6 +74,7 @@ class CartItemsController{
         new ResponseHanlders(response,this.res).deleteResponse();
     }
 
+    // ADMIN ONLY
     async deleteAllCartItems(){
         const response = await this.cartModel.deleteAllCartItems();
         new ResponseHanlders(response,this.res).deleteResponse();

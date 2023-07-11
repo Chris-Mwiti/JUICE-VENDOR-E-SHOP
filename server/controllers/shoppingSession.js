@@ -5,8 +5,7 @@ const ShoppingSession = require('../models/shoppingSession');
 
 // Response Handlers
 const ResponseHanlders = require('../helpers/modelResponseHandlers');
-const User = require('../models/users');
-const UserController = require('./userController');
+
 
 class ShoppingSessionController{
     constructor(req,res){
@@ -14,22 +13,14 @@ class ShoppingSessionController{
         this.res = res,
         this.total = req.body.total,
         this.status = req.body.status,
-        this.userEmail = req.email
+        this.userId = req.userId
+        this.sessionModel = new ShoppingSession(this.total,this.userId,this.status)
     }
 
-    // SERVER FUNCTIONALITIES
-    async generateUserId(){
-        const userId =  await new UserController().generateUserId(this.req,this.res);
-        return userId;
-    }
 
     // PRIVILEGES: USER ONLY
     async createSession(){
-
-        const userId = await this.generateUserId();
-        // Instantiate the shopping model
-        const shoppingModel = new ShoppingSession(this.total, userId,this.status);
-        const response = await shoppingModel.createSession();
+        const response = await this.sessionModel.createSession();
 
         const access_token = this.req.cookies.access_token
         new ResponseHanlders(response, this.res).postSessionResponse(access_token);
@@ -38,38 +29,26 @@ class ShoppingSessionController{
 
     // PRIVILEGES: ADMIN
     async getSesssions(){
-        const userId = await this.generateUserId();
-        const shoppingModel = new ShoppingSession(this.total, userId, this.status);
-
-        const sessions  = await shoppingModel.getSessions();
+        const sessions  = await this.sessionModel.getSessions();
         new ResponseHanlders(sessions,this.res).getResponse();
     }
 
     // PRIVILEGES: USER 
     async getSession(){
-       
-        const userId = await this.generateUserId();
-        const shoppingModel = new ShoppingSession(this.total, userId, this.status);
-
-        const session = await shoppingModel.getSession(userId);
+        const session = await this.sessionModel.getSession(this.userId);
         new ResponseHanlders(session,this.res).getResponse()
     }
-     
+    
     async updateSessionStatus(){
-        const userId = await this.generateUserId();
-        const shoppingModel = new ShoppingSession(this.total, userId, this.status);
-
-        const session = await shoppingModel.getSession(userId);
-
+        const session = await this.sessionModel.getSession(this.userId);
 
         if (session == null || undefined) return this.res.status(403).json({message: "Forbidden"});
 
         const { id } = session;
-
-        const response = await shoppingModel.updateSessionStatus(id);
+        const {status} = this.req.body
+        const response = await this.sessionModel.updateSessionStatus(id,status);
 
         new ResponseHanlders(response,this.res).updatesResponse();
-
 
     }
     
@@ -77,11 +56,7 @@ class ShoppingSessionController{
     async deleteSession(){
         const {sessionId} = this.req.params;
         const id = Number(sessionId);
-
-        const userId = await this.generateUserId();
-        const shoppingModel = new ShoppingSession(this.total.total, userId, this.status);
-
-        const response = await shoppingModel.deleteSession(id);
+        const response = await this.sessionModel.deleteSession(id);
         new ResponseHanlders(response,this.res).deleteResponse()
     }
 }

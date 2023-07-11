@@ -62,7 +62,7 @@ const Product = ({dispatchCart}) => {
 
         }
         fetchProduct(dispatch)
-    },[id])
+    },[id,category])
 
     // Components state
     const [quantity,setQuantity] = useState(1)

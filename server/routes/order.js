@@ -10,6 +10,12 @@ router.route('/')
         const ordersController = new OrderDetailsController(req,res);
         await ordersController.createOrder();
     })
+    
+router.route('/:id')
+    .put(async(req,res) => {
+        const ordersController = new OrderDetailsController(req,res);
+        await ordersController.updateOrder();
+    })
 
 
 

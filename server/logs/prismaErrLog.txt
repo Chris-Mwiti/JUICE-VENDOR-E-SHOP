@@ -562,3 +562,27 @@ Argument user for data.user is missing.
 Note: Lines with + are required, lines with ? are optional.
 
 
+230711	12:06:32	 564cfa42-3103-487e-8cb5-e9e677aadc09	500	
+Invalid `prisma.cartItems.create()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\cartItems.js:13:53
+
+  10 
+  11 async addCartItem(){
+  12     try{
+→ 13         const response = await prisma.cartItems.create({
+               data: {
+                 productId: 'Mango',
+                            ~~~~~~~
+                 quantity: 3,
+                 sessionId: 17
+               },
+               include: {
+                 product: true,
+                 session: true
+               }
+             })
+
+Argument productId: Got invalid value 'Mango' on prisma.createOneCartItems. Provided String, expected Int.
+
+
+

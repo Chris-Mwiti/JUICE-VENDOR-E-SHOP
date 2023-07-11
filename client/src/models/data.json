@@ -809,5 +809,35 @@
       "code": "w23Er",
       "value": "8"
     }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Mango"
+    },
+    {
+      "id": 2,
+      "name": "Banana"
+    },
+    {
+      "id": 3,
+      "name": "Strawberry"
+    },
+    {
+      "id": 4,
+      "name": "Orange"
+    },
+    {
+      "id": 5,
+      "name": "Avacado"
+    },
+    {
+      "id": 6,
+      "name": "Watermelon"
+    },
+    {
+      "id": 7,
+      "name": "Pineapple"
+    }
   ]
 }
