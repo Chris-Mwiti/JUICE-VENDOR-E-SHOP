@@ -21,11 +21,27 @@ class Inventory{
         }
     }
 
-    async getItem(item){
+    async getItem(inventoryId){
         try{
-            const product =  await prisma.inventory.findUnique({
+            const inventoryItem =  await prisma.inventory.findUnique({
                 where:{
-                    productName: item
+                    id: inventoryId
+                },
+                include:{
+                    product: true
+                }
+            })
+            return inventoryItem
+        }catch(err){
+            prismaErrHandler(err)
+        }
+    }
+
+    async getProductItem(productName){
+        try{
+            const product = await prisma.inventory.findUnique({
+                where:{
+                    productName: productName
                 }
             })
             return product
@@ -34,7 +50,24 @@ class Inventory{
         }
     }
 
-    async updateItem(productName,quantity){
+
+    async updateItem(inventoryId,quantity){
+        try{
+            const response =  await prisma.inventory.update({
+                where:{
+                    id: inventoryId
+                },
+                data:{
+                    quantity: quantity
+                },
+            })
+            return response
+        }catch(err){
+            prismaErrHandler(err)
+        }
+    }
+
+    async updateProduct(productName,quantity){
         try{
             const response =  await prisma.inventory.update({
                 where:{
@@ -49,10 +82,15 @@ class Inventory{
             prismaErrHandler(err)
         }
     }
+    
 
     async getItems(){
         try{
-            const products = await prisma.inventory.findMany()
+            const products = await prisma.inventory.findMany({
+                include:{
+                    product: true
+                }
+            })
             return products
         }catch(err){
             prismaErrHandler(err)

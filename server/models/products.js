@@ -77,6 +77,10 @@ class Products {
             const product = await prisma.product.findUnique({
                 where:{
                     id: numId,
+                },
+                include:{
+                    category: true,
+                    inventory: true
                 }
             })
             return product

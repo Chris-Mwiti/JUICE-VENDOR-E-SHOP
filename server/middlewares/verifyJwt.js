@@ -12,7 +12,8 @@ const verifyJwt = (req,res,next) => {
         process.env.ACCESS_TOKEN_SECRET,
         (err,decode) =>{
             if(err) return res.status(403).json({message: "Forbiden"})
-            req.userId = decode.userId;
+            req.userId = decode.userId,
+            req.role = decode.role,
             next()
         }
     )

@@ -61,11 +61,11 @@ class OrderDetails{
         }
     }
 
-    async getOrder(){
+    async getOrder(orderId){
         try{
             const order = await prisma.orderDetails.findUnique({
                 where: {
-                    userId: this.userId
+                    id: orderId
                 },
                 include:{
                     payment: true,
@@ -98,11 +98,11 @@ class OrderDetails{
         }
     }
     // ADMIN PRIVILEGE
-    async deleteOrder(){
+    async deleteOrder(orderId){
         try{
             const response = await prisma.orderDetails.delete({
                 where:{
-                    userId: this.userId
+                    id: orderId
                 }
             })
             return response

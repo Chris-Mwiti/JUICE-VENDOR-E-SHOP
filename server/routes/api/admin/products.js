@@ -1,7 +1,9 @@
-const ProductController = require('../controllers/productController');
-
 const router = require('express').Router();
 
+const verifyJwt = require('../../../middlewares/verifyJwt');
+const ProductController = require('../../../controllers/productController');
+
+router.use(verifyJwt);
 router.route('/')
     .get(async(req,res) => {
         const productController = new ProductController(req,res);

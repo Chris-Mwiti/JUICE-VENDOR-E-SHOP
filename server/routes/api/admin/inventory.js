@@ -1,8 +1,11 @@
 const router = require('express').Router()
 
+const verifyJwt = require('../../../middlewares/verifyJwt');
 // Controllers
-const InventoryController = require('../controllers/inventoryController')
+const InventoryController = require('../../../controllers/inventoryController');
 
+
+router.use(verifyJwt);
 // COMMON ROUTES API
 router.route('/')
     .get(async (req,res) => {
@@ -15,7 +18,7 @@ router.route('/')
     })
 
 // API ROUTES WITH PARAMS
-router.route('/:inventoryName')
+router.route('/:inventoryId')
     .get(async(req,res) => {
         const inventoryController = new InventoryController(req,res);
         await inventoryController.getItem()

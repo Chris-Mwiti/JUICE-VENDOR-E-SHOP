@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 const ResponseHandlers = require('../helpers/modelResponseHandlers');
 
 // Users Controller defination
-class UserController {
+class AdminController {
     
     constructor(req,res){
         this.req = req,
@@ -37,6 +37,7 @@ class UserController {
         const { email } = this.req.body
         // Get user from the database
         const response = await new User().getUser(email);
+        console.log(response);
 
         // Check if there is an existing user or an error has occured
         if  (response == null) return this.res.status(400).json({message: "Wrong Email"});
@@ -46,7 +47,6 @@ class UserController {
         const matchPwd = await bcrypt.compare(this.req.body.password, response.password);
         if(!matchPwd) return this.res.status(401).json({message: "Wrong Password"});
     
-        const { id } = response
         // Generators access_token & refresh_token
         const { access_token,refresh_token} = tokenGenerators(response);
         // Add the refresh token to the database
@@ -55,10 +55,8 @@ class UserController {
 
         // @TODO: Refactor the code
         await this.res.cookie('access_token',access_token,{httpOnly: true, maxAge: 15 * 60 * 1000});
+        return this.res.cookie('refresh_token', refresh_token,{httpOnly: true,maxAge: 24 * 60 * 60 * 1000}).status(200).json({message: "Ok"})
 
-        // Check if user has an existing session and if so append sessionId to the access_token payload
-        const isSessionAvailable = await new ShoppingSession().getSession(id);
-        await new ResponseHandlers(isSessionAvailable,this.res).checkExistingSessions(access_token,refresh_token);
     }
 
     async checkUser(){
@@ -97,8 +95,6 @@ class UserController {
         }
 
     }
-
-
 }
 
-module.exports = UserController;
+module.exports = AdminController

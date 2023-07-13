@@ -16,6 +16,7 @@ export function httpErrorHandler(error,dispatch) {
       //The request was made and the server responded with a status code that falls out of the range of 2xx the http status code mentioned above
       const statusCode = response?.status
        switch(statusCode){
+            
             case 401: return dispatch({type: "errorAuthenticatingUser", message: "Unauthorized"})
             case 500: return dispatch({type: "errorAuthenticatingUser", message: "Please try again later"})
             default: 

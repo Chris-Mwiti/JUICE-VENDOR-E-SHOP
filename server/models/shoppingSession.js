@@ -11,7 +11,6 @@ class ShoppingSession{
     }
 
     async createSession(){
-        console.log(this.userId);
         try{
             const response = await prisma.shoppingSession.create({
                 data:{

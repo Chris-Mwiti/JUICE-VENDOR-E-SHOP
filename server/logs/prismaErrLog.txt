@@ -586,3 +586,88 @@ Argument productId: Got invalid value 'Mango' on prisma.createOneCartItems. Prov
 
 
 
+230711	23:02:09	 d96ef538-daa9-468b-92c9-1e18a04d636d	500	
+Invalid `prisma.inventory.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:26:53
+
+  23 
+  24 async getItem(inventoryId){
+  25     try{
+→ 26         const product =  await prisma.inventory.findUnique({
+               where: {
+                 id: '7'
+                     ~~~
+               }
+             })
+
+Argument id: Got invalid value '7' on prisma.findUniqueInventory. Provided String, expected Int.
+
+
+
+230711	23:23:06	 fc4372c9-b3da-4159-9d48-9dae624d781f	500	
+Invalid `prisma.inventory.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:26:53
+
+  23 
+  24 async getItem(inventoryId){
+  25     try{
+→ 26         const product =  await prisma.inventory.findUnique({
+               where: {
+                 id: 'Apple'
+                     ~~~~~~~
+               }
+             })
+
+Argument id: Got invalid value 'Apple' on prisma.findUniqueInventory. Provided String, expected Int.
+
+
+
+230711	23:47:31	 d7352317-352d-4296-8233-2c9cb3e6bf91	500	
+Invalid `prisma.inventory.findUnique()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:26:53
+
+  23 
+  24 async getItem(inventoryId){
+  25     try{
+→ 26         const product =  await prisma.inventory.findUnique({
+               where: {
+                 id: 'Apple'
+                     ~~~~~~~
+               }
+             })
+
+Argument id: Got invalid value 'Apple' on prisma.findUniqueInventory. Provided String, expected Int.
+
+
+
+230711	23:57:05	 64eb1256-1243-4ee8-9e09-77051823639f	500	
+Invalid `prisma.inventory.update()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\inventory.js:52:54
+
+  49 
+  50 async updateItem(inventoryId,quantity){
+  51     try{
+→ 52         const response =  await prisma.inventory.update({
+               where: {
+                 id: 'Apple'
+                     ~~~~~~~
+               },
+               data: {
+                 quantity: 21
+               }
+             })
+
+Argument id: Got invalid value 'Apple' on prisma.updateOneInventory. Provided String, expected Int.
+
+
+
+230712	14:01:32	 647e7cdf-eb1e-47c4-87d1-dcfa035e5042	500	
+Invalid `prisma.shoppingSession.delete()` invocation in
+G:\JS PROJECTS\WEBSITE PROJECTS\JUICE-VENDOR-E-SHOP\server\models\shoppingSession.js:93:65
+
+  90 
+  91 async deleteSession(sessionId){
+  92     try{
+→ 93         const response = await prisma.shoppingSession.delete(
+Foreign key constraint failed on the field: `sessionId`
+

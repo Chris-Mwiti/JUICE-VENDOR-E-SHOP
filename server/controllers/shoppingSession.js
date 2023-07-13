@@ -13,15 +13,16 @@ class ShoppingSessionController{
         this.res = res,
         this.total = req.body.total,
         this.status = req.body.status,
-        this.userId = req.userId
+        this.userId = req.userId,
+        this.role = req.role
         this.sessionModel = new ShoppingSession(this.total,this.userId,this.status)
     }
 
 
     // PRIVILEGES: USER ONLY
     async createSession(){
+        if(this.role !== 'user') return this.res.status(403).json({message: "Forbidden"});
         const response = await this.sessionModel.createSession();
-
         const access_token = this.req.cookies.access_token
         new ResponseHanlders(response, this.res).postSessionResponse(access_token);
 
@@ -29,17 +30,20 @@ class ShoppingSessionController{
 
     // PRIVILEGES: ADMIN
     async getSesssions(){
+        if(this.role !== 'admin') return this.res.status(403).json({message: "Forbidden"});
         const sessions  = await this.sessionModel.getSessions();
         new ResponseHanlders(sessions,this.res).getResponse();
     }
 
     // PRIVILEGES: USER 
     async getSession(){
+        if(this.role !== 'user') return this.res.status(403).json({message: "Forbidden"});
         const session = await this.sessionModel.getSession(this.userId);
         new ResponseHanlders(session,this.res).getResponse()
     }
     
     async updateSessionStatus(){
+        if(this.role !== 'user') return this.res.status(403).json({message: "Forbidden"});
         const session = await this.sessionModel.getSession(this.userId);
 
         if (session == null || undefined) return this.res.status(403).json({message: "Forbidden"});
@@ -54,6 +58,7 @@ class ShoppingSessionController{
     
     // PRIVILEGES: ADMIN ONLY
     async deleteSession(){
+        if(this.role !== 'admin') return this.res.status(403).json({message: "Forbidden"});
         const {sessionId} = this.req.params;
         const id = Number(sessionId);
         const response = await this.sessionModel.deleteSession(id);

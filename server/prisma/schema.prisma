@@ -19,6 +19,7 @@ model User {
   lastName String @db.VarChar(255)
   email String @db.VarChar(255) @unique
   password String @db.VarChar(255)
+  role String @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   session ShoppingSession?
@@ -115,6 +116,7 @@ model OrderDetails{
   payment PaymentDetails @relation(fields: [paymentId], references: [id])
   paymentId Int @unique
   items OrderItems[]
+  shippingInfo ShippingDetails?
   status String @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -137,5 +139,17 @@ model PaymentDetails{
   status String @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model ShippingDetails{
+  id Int @id @default(autoincrement())
+  county String 
+  street String
+  town String
+  locationDesc String
+  createdAt DateTime @default(now())
+  modifiedAt DateTime @updatedAt
+  order OrderDetails @relation(fields: [orderId], references: [id])
+  orderId Int @unique
 }
 
